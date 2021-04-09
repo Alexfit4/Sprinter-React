@@ -1,10 +1,10 @@
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom'
-import Dashboard from './components/Navbar/Pages/Dashboard'
-import Devs from './components/Navbar/Pages/Devs'
-import Employee from './components/Navbar/Pages/Employee'
-import Sprints from './components/Navbar/Pages/Sprints'
+import Dashboard from './components/Dashboard/Dashboard'
+import Devs from './components/Devs/Devs'
+import Employee from './components/Employees/Employee'
+import Sprints from './components/Sprints/Sprints'
 
 function App() {
 	return (
