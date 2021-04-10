@@ -13,18 +13,14 @@ export const getEmployees = async (req, res) => {
 };
 
 export const postEmployees = async (req, res) => {
-	try {
-		const postEmployee = await EmployeeSchema.create(
-		{
-			first_name: req.body,
-			last_name: req.body
-		}
-		);
-		console.log(postEmployee, "here");
+    const { first_name, last_name } = req.body;
 
-		res.status(200).json(postEmployee);
-	} catch (error) {
-		res.status(404).json({ message: error.message });
+	try {
+		const employee = await EmployeeSchema.save({ first_name, last_name});
+
+		 res.json(employee);
+	} catch (err) {
+		console.log(err);
+		 res.status(500).json({ err: "Something went wrong" });
 	}
 };
-// CREATE A PROJECT MODEL 
