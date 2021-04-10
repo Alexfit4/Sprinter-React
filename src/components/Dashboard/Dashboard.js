@@ -30,6 +30,7 @@ function Dashboard() {
                     <Card title={data.title} text={data.text} /> 
                 )
             })}
+
         </div>
     )
 }
