@@ -25,11 +25,11 @@ function Dashboard() {
     return (
         <div className='dashboard'>
             <h1>Dashboard Page</h1>
-            {cardData.map((data) => {
+            <div>{cardData.map((data) => {
                 return (
                     <Card title={data.title} text={data.text} /> 
                 )
-            })}
+            })}</div>
 
         </div>
     )
