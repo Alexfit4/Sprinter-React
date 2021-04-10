@@ -8,7 +8,7 @@ app.use('/employees', employeeRoutes)
 
 
 const CONNECTION_URL =
-	"mongodb+srv://AmirA:1234@cluster0.lmphr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority";
+	"mongodb+srv://AmirA:1234@cluster0.lmphr.mongodb.net/Sprinter?retryWrites=true&w=majority";
 
 const PORT = process.env.PORT || 5000;
 

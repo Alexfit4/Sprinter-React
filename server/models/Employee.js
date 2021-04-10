@@ -9,6 +9,6 @@ const employeeSchema = mongoose.Schema({
 	},
 });
 
-const EmployeeSchema = mongoose.model('EmployeeSchema', employeeSchema)
+const EmployeeSchema = mongoose.model('EmployeeSchema', employeeSchema);
 
-export default EmployeeSchema
+export default EmployeeSchema;
