@@ -5,6 +5,7 @@ import Dashboard from './components/Dashboard/Dashboard'
 import Devs from './components/Devs/Devs'
 import Employee from './components/Employees/Employee'
 import Sprints from './components/Sprints/Sprints'
+import PersonList from './components/testing'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
@@ -19,6 +20,7 @@ function App() {
 					<Route path='/devs' component={Devs}/>
 				</Switch>
 			</Router>
+			<PersonList />
 		</div>
 	);
 }
