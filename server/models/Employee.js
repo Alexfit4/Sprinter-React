@@ -1,5 +1,23 @@
 import mongoose from "mongoose";
+const { Schema } = mongoose;
 
+function slugify (str) {
+    str = str.replace(/^\s+|\s+$/g, ''); // trim
+    str = str.toLowerCase();
+  
+    // remove accents, swap ñ for n, etc
+    var from = "àáäâèéëêìíïîòóöôùúüûñç·/_,:;";
+    var to   = "aaaaeeeeiiiioooouuuunc------";
+    for (var i=0, l=from.length ; i<l ; i++) {
+        str = str.replace(new RegExp(from.charAt(i), 'g'), to.charAt(i));
+    }
+
+    str = str.replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+        .replace(/\s+/g, '-') // collapse whitespace and replace by -
+        .replace(/-+/g, '-'); // collapse dashes
+
+    return str;
+}
 const employeeSchema = mongoose.Schema(
 	{
 		first_name: {
@@ -8,16 +26,13 @@ const employeeSchema = mongoose.Schema(
 		last_name: {
 			type: String,
 		},
-		role: [
-			{
-				title: {
-					type: String,
-				},
-				salary: {
-					type: Number,
-				},
-			},
-		],
+		slug: {
+			type: String
+		},
+		role: {
+			type: Schema.Types.ObjectId,
+			ref: "Roles",
+		},
 		createdAt: {
 			type: Date,
 			default: new Date(),
@@ -30,6 +45,11 @@ const employeeSchema = mongoose.Schema(
 		},
 	}
 );
+
+employeeSchema.pre('save', function(){
+	//? Slugify the title, if there is no title it wont reach here
+	this.slug = slugify(this.first_name + this.last_name)
+})
 
 const EmployeeSchema = mongoose.model("EmployeeSchema", employeeSchema);
 
