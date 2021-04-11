@@ -17,7 +17,7 @@ export const postProjects = async (req, res) => {
     const { title, description, manager, employee } = req.body;
 
 	try {
-		const project = await ProjectSchema.save({ 
+		const project = await ProjectSchema.create({ 
 			title, description, manager, employee 
 		});
 
