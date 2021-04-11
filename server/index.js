@@ -1,10 +1,12 @@
 import express from "express";
-import mongoose from 'mongoose'
+import mongoose from 'mongoose';
+import User from '../server/models/Employee.js';
+import Project from '../server/models/Project.js';
+
 import cors from "cors";
 const app = express();
 import EmployeeRoutes from '../server/routes/employee.js'
 import RolesRoutes from '../server/routes/roles.js'
-
 
 app.use(cors());
 app.use(express.json());
@@ -13,11 +15,35 @@ app.use('/roles', RolesRoutes)
 
 
 // //* CREATE
-// app.post("/users", async (req, res) => {
-// 	const { first_name, last_name } = req.body;
+app.post("/users", async (req, res) => {
+const { first_name, last_name } = req.body;
 
+		return res.json(user);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
+
+app.post("/projects", async (req, res) => {
+	const { title, description, manager, employee } = req.body;
+
+	try {
+		const project = await Project.create({ 
+            title, description, manager, employee
+         });
+
+		return res.json(project);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
+
+//* READ
 // 	try {
 // 		const user = await User.create({ first_name, last_name });
+
 
 // 		return res.json(user);
 // 	} catch (err) {
@@ -31,12 +57,38 @@ app.use('/roles', RolesRoutes)
 // 	try {
 // 		const users = await User.find({});
 
-// 		return res.json(users);
-// 	} catch (err) {
-// 		console.log(err);
-// 		return res.status(500).json({ err: "Something went wrong" });
-// 	}
-// });
+
+app.get("/projects", async (req, res) => {
+	try {
+		const projects = await Project.find({});
+
+		return res.json(projects);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
+
+//* UPDATE
+app.put("/user/:id", async (req, res) => {
+    const id =req.params.id
+    const { name, email, role } = req.body
+	try {
+		const user = await User.findById(id);
+
+        //? Update with the new input OR use what input is already there.
+        user.name = name || user.name
+        user.email = email || user.email
+        user.role = role || user.role
+
+        await user.save()
+
+		return res.json(user);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
 
 // //* UPDATE
 // app.put("/user/:id", async (req, res) => {
