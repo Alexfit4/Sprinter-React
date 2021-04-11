@@ -1,9 +1,9 @@
 import express from "express";
-import mongoose from 'mongoose'
-import User from '../server/models/Employee.js'
+import mongoose from 'mongoose';
+import User from '../server/models/Employee.js';
+import Project from '../server/models/Project.js';
 import cors from "cors";
 const app = express();
-
 
 
 app.use(express.json());
@@ -22,6 +22,22 @@ app.post("/users", async (req, res) => {
 		return res.status(500).json({ err: "Something went wrong" });
 	}
 });
+
+app.post("/projects", async (req, res) => {
+	const { title, description, manager, employee } = req.body;
+
+	try {
+		const project = await Project.create({ 
+            title, description, manager, employee
+         });
+
+		return res.json(project);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
+
 //* READ
 
 app.get("/users", async (req, res) => {
@@ -29,6 +45,17 @@ app.get("/users", async (req, res) => {
 		const users = await User.find({});
 
 		return res.json(users);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+});
+
+app.get("/projects", async (req, res) => {
+	try {
+		const projects = await Project.find({});
+
+		return res.json(projects);
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ err: "Something went wrong" });
