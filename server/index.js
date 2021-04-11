@@ -15,30 +15,31 @@ app.use('/roles', RolesRoutes)
 
 
 // //* CREATE
-app.post("/users", async (req, res) => {
-const { first_name, last_name } = req.body;
+// app.post("/users", async (req, res) => {
 
-		return res.json(user);
-	} catch (err) {
-		console.log(err);
-		return res.status(500).json({ err: "Something went wrong" });
-	}
-});
+// const { first_name, last_name } = req.body;
 
-app.post("/projects", async (req, res) => {
-	const { title, description, manager, employee } = req.body;
+// 		return res.json(user);
+// 	} catch (err) {
+// 		console.log(err);
+// 		return res.status(500).json({ err: "Something went wrong" });
+// 	}
+// });
 
-	try {
-		const project = await Project.create({ 
-            title, description, manager, employee
-         });
+// app.post("/projects", async (req, res) => {
+// 	const { title, description, manager, employee } = req.body;
 
-		return res.json(project);
-	} catch (err) {
-		console.log(err);
-		return res.status(500).json({ err: "Something went wrong" });
-	}
-});
+// 	try {
+// 		const project = await Project.create({ 
+//             title, description, manager, employee
+//          });
+
+// 		return res.json(project);
+// 	} catch (err) {
+// 		console.log(err);
+// 		return res.status(500).json({ err: "Something went wrong" });
+// 	}
+// });
 
 //* READ
 // 	try {
