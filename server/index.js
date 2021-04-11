@@ -3,11 +3,13 @@ import mongoose from 'mongoose'
 import cors from "cors";
 const app = express();
 import EmployeeRoutes from '../server/routes/employee.js'
+import RolesRoutes from '../server/routes/roles.js'
 
 
 app.use(cors());
 app.use(express.json());
 app.use('/employee', EmployeeRoutes)
+app.use('/roles', RolesRoutes)
 
 
 // //* CREATE
