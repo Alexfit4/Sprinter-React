@@ -1,5 +1,6 @@
-import EmployeeSchema from '../models/Employee.js'
+import EmployeeSchema from "../models/Employee.js";
 
+// Get Routes
 export const getEmployees = async (req, res) => {
 	try {
 		const getEmployee = await EmployeeSchema.find();
@@ -12,15 +13,39 @@ export const getEmployees = async (req, res) => {
 	}
 };
 
+// Create Routes.
 export const postEmployees = async (req, res) => {
-    const { first_name, last_name } = req.body;
+	const { first_name, last_name } = req.body;
+
 
 	try {
-		const employee = await EmployeeSchema.save({ first_name, last_name});
+		const employee = await EmployeeSchema.create({
+			first_name,
+			last_name,
+		});
 
-		 res.json(employee);
+		return res.json(employee);
 	} catch (err) {
 		console.log(err);
-		 res.status(500).json({ err: "Something went wrong" });
+		return res.status(500).json({ err: "Something went wrong" });
+	}
+};
+
+// Add roles to an employee
+export const updateEmployeeRole = async (req, res) => {
+	const roles = { title: req.body.title, salary: req.body.salary };
+	try {
+		const employee = await EmployeeSchema.findOneAndUpdate(
+			{ first_name: req.body.first_name },
+			{ $push: { role: roles } },
+			{ new: true }
+		);
+
+		await employee.save();
+
+		return res.json(employee);
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" });
 	}
 };
