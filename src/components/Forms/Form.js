@@ -14,8 +14,8 @@ export default function Forms(props) {
 		setValidated(true);
 	};
 
-    const roles=  ['Software Engineer', "Sales Person"]
-    const projects = ['Tincat', 'Facebook']
+	const roles = ['Software Engineer', "Sales Person"]
+	const projects = ['Tincat', 'Facebook']
 
 	return (
 		<Form noValidate validated={validated} onSubmit={handleSubmit}>
@@ -46,25 +46,25 @@ export default function Forms(props) {
 					</Form.Label>
 					<Col md={10}>
 						<Form.Control as="select" custom>
-                            {roles.map((options) => {
-                                return (
-                                    <option>{options}</option>
-                                )
-                            })}
+							{roles.map((options) => {
+								return (
+									<option>{options}</option>
+								)
+							})}
 						</Form.Control>
 					</Col>
 				</Form.Group>
 				<Form.Group as={Row} controlId="formHorizontalEmail">
 					<Form.Label column md={4}>
-                    {props.project}
+						{props.project}
 					</Form.Label>
 					<Col sm={10}>
 						<Form.Control as="select" custom>
-                        {projects.map((options) => {
-                                return (
-                                    <option>{options}</option>
-                                )
-                            })}
+							{projects.map((options) => {
+								return (
+									<option>{options}</option>
+								)
+							})}
 						</Form.Control>
 					</Col>
 				</Form.Group>
