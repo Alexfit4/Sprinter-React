@@ -4,8 +4,8 @@ import Roles from '../models/Roles.js'
 // Get Routes
 export const getEmployees = async (req, res) => {
 	try {
-        //? Include the roles with employees(.populate())
-        const employee = await EmployeeSchema.find({}).populate('role', "-createdAt")//?hide these fields in the get
+        // Include the roles with employees(.populate())
+        const employee = await EmployeeSchema.find({}).populate('role', "-createdAt")// hide these fields in the get
         console.log(employee);
         return  res.json(employee);
     } catch (err) {
@@ -37,7 +37,7 @@ export const updateEmployeeRole = async (req, res) => {
 
 // Create an employee and assign an existing role to that employee
 export const postEmployees = async (req, res) => {
-    const { roleId, first_name, last_name, title, salary } = req.body;
+    const { roleId, first_name, last_name} = req.body;
 
     try {
         const role = await Roles.findById(roleId).orFail()
