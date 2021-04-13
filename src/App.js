@@ -15,15 +15,14 @@ function App() {
 			<Router>
 				<Navbar />
 				<Switch>
+				<DndProvider backend={HTML5Backend}>
 					<Route path='/' exact component={Dashboard} />
 					<Route path='/employees' component={Employee} />
-					<DndProvider backend={HTML5Backend}>
-						<Route path='/sprints' component={Sprints} />
-					</DndProvider>
+					<Route path='/sprints' component={Sprints} />
 					<Route path='/devs' component={Devs} />
+					</DndProvider>
 				</Switch>
 			</Router>
-			<PersonList />
 		</div>
 	);
 }
