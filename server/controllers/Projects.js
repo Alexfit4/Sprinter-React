@@ -1,6 +1,6 @@
 import ProjectSchema from '../models/Project.js';
 
-// GET Projects
+// READ Projects
 export const getProjects = async (req, res) => {
     try {
         const getProject = await ProjectSchema.find();
@@ -29,22 +29,32 @@ export const postProjects = async (req, res) => {
 	}
 };
 
-// IN PROCESS
+// IN PROCESS UPDATE Projects
 export const updateProjects = async (req, res) => {
-	const {title, description, manager, employee } = req.body;
+	const fixProject = { title: req.body.title, description: req.body.description };
 
 	try {
-		const project = await ProjectSchema.findOneAndUpdate({
-			title, description, manager, employee
-		})
-		return res.json(updateProjects);
+		const project = await ProjectSchema.findOneAndUpdate(
+			{ _id: req.params.id },
+			{ $set: { 
+				title: fixProject.title, 
+				description: fixProject.description,
+				modified: Date.now()
+				} 
+			},
+			{ new: true }
+		);
+
+		await project.save();
+			
+		return res.json({message: "Successfully updated"});
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ err: "Something went wrong" })
 	}
 }
 
-// NOT YET FUNCTIONAL
+// DELETE Projects
 export const deleteProjects = async (req, res) => {
 	const id = req.params.id;
 	try {
