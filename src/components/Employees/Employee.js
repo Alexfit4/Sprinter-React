@@ -2,9 +2,12 @@ import React from 'react';
 import TableComponents from "../Table"
 import {FormEmployeeData} from '../Forms/FormEmployeeData.js'
 import Forms from '../Forms/Form'
+import {Col, Row, Container} from "react-bootstrap";
 
 function Employee() {
     return (
+        <Container>
+        <Row>
         <div className='employee'>
             <h1>Employee Page</h1>
             <TableComponents/>
@@ -21,6 +24,8 @@ function Employee() {
                 )
             })}
         </div>
+        </Row>
+        </Container>
     )
 }
 
