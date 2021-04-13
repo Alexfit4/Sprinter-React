@@ -29,7 +29,7 @@ export const postProjects = async (req, res) => {
 	}
 };
 
-// IN PROCESS UPDATE Projects
+// UPDATE Projects
 export const updateProjects = async (req, res) => {
 	const fixProject = { title: req.body.title, description: req.body.description };
 
