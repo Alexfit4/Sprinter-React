@@ -18,10 +18,11 @@ const projectSchema = mongoose.Schema({
         type: String
     },
     employee: {
-        type: String
+        type: [String]
     },
 });
 
 const ProjectSchema = mongoose.model('ProjectSchema', projectSchema);
 
 export default ProjectSchema;
+

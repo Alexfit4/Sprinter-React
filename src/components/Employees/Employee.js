@@ -4,7 +4,9 @@ import {FormEmployeeData} from '../Forms/FormEmployeeData.js'
 import Forms from '../Forms/Form'
 import {Col, Row, Container} from "react-bootstrap";
 
-function Employee() {
+function Employee() {   
+
+
     return (
         <Container>
         <Row>
