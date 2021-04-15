@@ -1,7 +1,8 @@
 import React from "react";
 import Modal from "react-modal";
 
-// Modal.setAppElement("#app");
+Modal.setAppElement("body");
+
 
 const Window = ({ show, onClose, item }) => {
     return (
