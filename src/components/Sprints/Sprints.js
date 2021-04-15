@@ -1,14 +1,16 @@
 
 import SprintsForms from '../Forms/FormSprints'
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Item from "../Item/Item";
 import DropWrapper from "../DropWrapper/DropWrapper";
 import SprintsCol from "../Col/SprintsCol";
 import { data, statuses } from "../../data/index";
 import "./index.css";
+import axios from "axios";
+
 const Sprints = () => {
 
-    const [items, setItems] = useState(data);
+    const [items, setItems] = useState();
 
     const onDrop = (item, monitor, status) => {
         const mapping = statuses.find(si => si.status === status);
@@ -30,12 +32,38 @@ const Sprints = () => {
         });
     };
 
+    const getSprints = () => {
+
+        axios.get("http://localhost:5000/projects/")
+            .then(sprints => {
+                console.log(sprints.data)
+
+                const results = sprints.data.map(sprint => {
+                    return {
+                        id: sprint._id,
+                        // icon: "⭕️",
+                        status: sprint.status,
+                        title: sprint.title,
+                        content: sprint.description
+                    }
+                })
+                console.log(results)
+                setItems(results)
+            }).catch(error => {
+                console.log(error)
+            })
+
+    }
+
+    useEffect(getSprints, [])
+
+
 
 
     return (
 
         <div className='sprints'>
-            <SprintsForms />
+            <SprintsForms getSprints={getSprints} />
             <div className={"row"}>
                 {statuses.map(s => {
                     return (
@@ -43,9 +71,10 @@ const Sprints = () => {
                             <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
                             <DropWrapper onDrop={onDrop} status={s.status}>
                                 <SprintsCol>
-                                    {items
+                                    {items ? items
                                         .filter(i => i.status === s.status)
                                         .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
+                                        : null
                                     }
                                 </SprintsCol>
                             </DropWrapper>

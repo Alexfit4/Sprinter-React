@@ -8,13 +8,12 @@ import EmployeeRoutes from '../server/routes/employee.js'
 import RolesRoutes from '../server/routes/roles.js'
 import ProjectRouter from '../server/routes/project.js'
 
-app.use(cors()); // DO NOT MOVE! 
+app.use(cors()); // ! DO NOT MOVE! Important for front end. 
 app.use(express.json());
 app.use('/employee', EmployeeRoutes)
 app.use('/roles', RolesRoutes)
-app.use('/projects', ProjectRouter )
+app.use('/projects', ProjectRouter)
 
-// Testing this?
 
 
 

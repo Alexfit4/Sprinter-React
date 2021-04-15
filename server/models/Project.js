@@ -20,8 +20,12 @@ const projectSchema = mongoose.Schema({
     employee: {
         type: [String]
     },
+    status: {
+        type: String
+    },
 });
 
 const ProjectSchema = mongoose.model('ProjectSchema', projectSchema);
 
 export default ProjectSchema;
+
