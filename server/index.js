@@ -12,7 +12,7 @@ app.use(cors()); // DO NOT MOVE!
 app.use(express.json());
 app.use('/employee', EmployeeRoutes)
 app.use('/roles', RolesRoutes)
-app.use('/projects', ProjectRouter )
+app.use('/projects', ProjectRouter)
 
 // Testing this?
 

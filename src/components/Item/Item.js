@@ -1,6 +1,6 @@
 import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-import Window from "../Window/Window";
+// import Window from "../Window/Window";
 import ITEM_TYPE from "../../data/types";
 
 const Item = ({ item, index, moveItem, status, }) => {
@@ -61,14 +61,15 @@ const Item = ({ item, index, moveItem, status, }) => {
                 onClick={onOpen}
             >
                 <div className={"color-bar"} style={{ backgroundColor: status.color }} />
-                <p className={"item-title"}>{item.content}</p>
+                <p className={"item-title"}>{item.title}</p>
+                <p className={"item-content"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p>
             </div>
-            <Window
+            {/* <Window
                 item={item}
                 onClose={onClose}
                 show={show}
-            />
+            /> */}
         </Fragment>
     );
 };
