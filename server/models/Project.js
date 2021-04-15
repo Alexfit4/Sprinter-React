@@ -18,6 +18,9 @@ const projectSchema = mongoose.Schema({
         type: String
     },
     employee: {
+        type: [String]
+    },
+    status: {
         type: String
     },
 });
@@ -25,3 +28,4 @@ const projectSchema = mongoose.Schema({
 const ProjectSchema = mongoose.model('ProjectSchema', projectSchema);
 
 export default ProjectSchema;
+
