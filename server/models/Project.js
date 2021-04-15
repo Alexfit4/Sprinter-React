@@ -5,7 +5,7 @@ const projectSchema = mongoose.Schema({
         type: String
     },
     description: {
-        type: String
+        type: [String]
     },
     startDate: {
         type: Date,
@@ -15,10 +15,10 @@ const projectSchema = mongoose.Schema({
         type: Date
     },
     manager: {
-        type: String
+        type: [String]
     },
     employee: {
-        type: String
+        type: [String]
     },
 });
 
