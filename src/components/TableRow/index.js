@@ -8,7 +8,6 @@ function TableRow(props) {
       <td>{props.Title}</td>
       <td>{props.Salary}</td>
       <td>{props.Email}</td>
-      <td>{props.Project}</td>
     </tr>
     )
 }
