@@ -1,7 +1,6 @@
 import Roles from '../models/Roles.js'
 
 
-
 export const getRoles = async (req, res) => {
 	try {
 		const getRoles = await Roles.find();
@@ -28,6 +27,21 @@ export const postRoles = async (req, res) => {
 	} catch (err) {
 		console.log(err);
 		return res.status(500).json({ err: "Something went wrong" });
+	}
+};
+
+
+// DELETE Roles
+export const deleteRoles = async (req, res) => {
+	const id = req.params.id;
+	try {
+		await Roles.findByIdAndDelete(id);
+
+		return res.json({message: "Successful deletion!"})
+		
+	} catch (err) {
+		console.log(err);
+		return res.status(500).json({ err: "Something went wrong" })
 	}
 };
 
