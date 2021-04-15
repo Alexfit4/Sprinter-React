@@ -1,10 +1,31 @@
 import React, { useState } from "react";
 import { Form, Button, Col, InputGroup, Row } from "react-bootstrap";
-import "../../App.css"
+import "../../App.css";
+import axios from "axios";
+import Employee from "../Employees/Employee";
 
 export default function Forms(props) {
+
 	const [validated, setValidated] = useState(false);
 
+	const 
+		{
+			first,
+			last,
+			title,
+			email,
+			password
+		} =props;
+
+	const EmployeeData = [
+		{
+			first,
+			last,
+			title,
+			email,
+			password
+		}
+	]
 	const handleSubmit = (event) => {
 		const form = event.currentTarget;
 		if (form.checkValidity() === false) {
@@ -15,29 +36,33 @@ export default function Forms(props) {
 		setValidated(true);
 	};
 
+	const addEmp = (EmployeeData) => {
+		return axios.post("http://localhost:5000/employee",{EmployeeData})
+	  };
+
 	const roles = ['Software Engineer', "Sales Person"]
 	const projects = ['Tincat', 'Facebook']
 
 	return (
 		<Col className="mx-auto addemp-form" md={12}>
 		<h3>Add Employees</h3>
-		<Form>
+		<Form noValidate validated={validated} onSubmit={handleSubmit}>
 			<Form.Group controlId="validationCustom01">
 				<Form.Label>First Name</Form.Label>
-				<Form.Control required type="text" placeholder="First Name" />
+				<Form.Control required type="text" placeholder="First Name" value = {first}/>
 				<Form.Text className="text-muted">
 				</Form.Text>
 			</Form.Group>
 
 			<Form.Group controlId="validationCustom01">
 				<Form.Label>Last Name</Form.Label>
-				<Form.Control required type="text" placeholder="First Name" />
+				<Form.Control required type="text" placeholder="First Name" value = {last} />
 				<Form.Text className="text-muted">
 				</Form.Text>
 			</Form.Group>
 			<Form.Group controlId="exampleForm.ControlSelect1">
 				<Form.Label>Select Title</Form.Label>
-				<Form.Control required as="select">
+				<Form.Control required as="select" value = {title}>
 					{roles.map((options) => {
 						return (
 							<option>{options}</option>
@@ -47,13 +72,17 @@ export default function Forms(props) {
 			</Form.Group>
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Email</Form.Label>
-				<Form.Control required type="email" placeholder="Email" />
+				<Form.Control required type="email" placeholder="Email" value = {email}/>
 			</Form.Group>
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Default Password</Form.Label>
-				<Form.Control required type="password" placeholder="Default Password" />
+				<Form.Control required type="password" placeholder="Default Password" value = {password} />
 			</Form.Group>
-			<Button variant="primary" type="submit">
+			<Button variant="primary" type="submit" onClick = {() => {
+				console.log(EmployeeData);
+				addEmp(EmployeeData)
+				}
+				}>
 				Submit
   </Button>
 		</Form>
