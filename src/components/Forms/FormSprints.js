@@ -22,8 +22,10 @@ export default class SprintsForms extends Component {
             manager: [],
             employee: [],
             status: '',
+            employeeData: []
         }
     }
+
 
     // const[validated, setValidated] = useState(false);
 
@@ -38,25 +40,83 @@ export default class SprintsForms extends Component {
     // };
 
 
-    employees = ['Employee 1', 'Employee 2', "Employee 3", "Employee 4"]
-    managers = ['manager 1', 'manager 2', "manager 3", "manager 4"]
+    // employees = ['Employee 1', 'Employee 2', "Employee 3", "Employee 4"]
+    // managers = ['manager 1', 'manager 2', "manager 3", "manager 4"]
 
     componentDidMount() {
-        axios.get('http://localhost:5000/projects')
+        this.getEmployees()
+        this.managerList()
+        console.log(this.state.employee)
+    }
+
+    employeeList() {
+        axios.get('http://localhost:5000/employee')
             .then(response => {
                 if (response.data.length > 0) {
                     this.setState({
-                        users: response.data.map(user => user.username),
-                        username: response.data[0].username
+                        employee: response.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`),
+
+
                     })
                 }
             })
             .catch((error) => {
                 console.log(error);
             })
-
     }
 
+
+    // getEmployees() {
+
+    //     axios.get("http://localhost:5000/employee")
+    //         .then(employee => {
+    //             console.log(employee)
+
+    //             const results = employee.data.map(employee => {
+    //                 return {
+    //                     employee: employee.first_name,
+
+    //                 }
+    //             })
+
+
+    //         }).catch(error => {
+    //             console.log(error)
+    //         })
+
+    // }
+
+
+
+    managerList() {
+        axios.get('http://localhost:5000/employee')
+            .then(response => {
+                let details = [];
+
+                for (var i in response.data) {
+                    details.push({ name: i, value: response.data[i] })
+                }
+
+                this.setState({ employee: details })
+
+            })
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:5000/employee')
+            .then(response => {
+                if (response.data.length > 0) {
+                    this.setState({
+                        employee: response.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`),
+                    })
+                }
+                console.log(this.state.employee)
+            })
+
+            .catch((error) => {
+                console.log(error);
+            })
+    }
 
     status = ['open', 'in progress', "in review", "done"]
 
@@ -103,11 +163,10 @@ export default class SprintsForms extends Component {
             title: this.state.title,
             description: this.state.description,
             manager: this.state.manager,
-            employee: this.state.employee,
+            employee: this.state.employeeData,
             startDate: this.state.startDate,
             status: this.state.status
         }
-
         console.log(project);
 
         axios.post('http://localhost:5000/projects', project)
@@ -146,26 +205,28 @@ export default class SprintsForms extends Component {
                             <Form.Control as="select" custom className="form-control"
                                 value={this.state.manager}
                                 onChange={this.onChangeManager}>
-                                {this.managers.map((options) => {
-                                    return (
-                                        <option>{options}</option>
-                                    )
+                                {this.state.employee.map(function (employee) {
+                                    return <option
+                                        key={employee}
+                                        value={employee}>{employee}
+                                    </option>;
                                 })}
                             </Form.Control>
-
-
 
 
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlSelect2">
                             <Form.Label>Employee</Form.Label>
                             <Form.Control as="select" multiple className="form-control"
-                                value={this.state.employee}
-                                onChange={this.onChangeEmployee}>
-                                {this.employees.map((options) => {
-                                    return (
-                                        <option>{options}</option>
-                                    )
+                                value={this.state.employee} onChange={(e) => {
+                                    this.setState({ employeeData: e.target.value })
+                                    console.log(e.target.value)
+                                }}>
+                                {this.state.employee.map(function (employee) {
+                                    return <option
+                                        key={employee}
+                                        value={employee}>{employee}
+                                    </option>;
                                 })}
                             </Form.Control>
                         </Form.Group>
