@@ -13,18 +13,18 @@ function Employee() {
         <div className='employee'>
             <h1>Employee Page</h1>
             <TableComponents/>
-            {FormEmployeeData.map((data) => {
+                    <Forms/>
+            {/* {FormEmployeeData.map((data) => {
                 return (
                     <Forms
                      first={data.first}
                      last={data.last}
                      role={data.title} 
-                     project={data.project}
                      email={data.email}
                      password={data.password}                    
                      />
                 )
-            })}
+            })} */}
         </div>
         </Row>
         </Container>
