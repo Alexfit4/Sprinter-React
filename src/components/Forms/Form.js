@@ -70,14 +70,14 @@ export default function Forms(props) {
 					})}
 				</Form.Control>
 			</Form.Group>
-			<Form.Group controlId="formBasicPassword">
+			{/* <Form.Group controlId="formBasicPassword">
 				<Form.Label>Email</Form.Label>
 				<Form.Control required type="email" placeholder="Email" value = {email}/>
 			</Form.Group>
 			<Form.Group controlId="formBasicPassword">
 				<Form.Label>Default Password</Form.Label>
 				<Form.Control required type="password" placeholder="Default Password" value = {password} />
-			</Form.Group>
+			</Form.Group> */}
 			<Button variant="primary" type="submit" onClick = {() => {
 				console.log(EmployeeData);
 				addEmp(EmployeeData)
