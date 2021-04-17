@@ -6,7 +6,7 @@ function DevInfo(props) {
 <Col lg={6} md={12} className="mb-5">
 <Col md={4} lg={6} className="float-left">
   <Image
-    src="https://mdbootstrap.com/img/Photos/Avatars/img%20(32).jpg"
+    src = {props.img}
     className="mx-auto mb-md-0 mb-4 rounded z-depth-1 img-fluid"
     tag="img"
     alt="Sample avatar"
