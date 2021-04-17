@@ -1,69 +1,46 @@
 import React, { useState, useEffect, Component } from "react";
 import { Form, Button, Col, Container, h1, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
+import { Multiselect } from 'multiselect-react-dropdown';
 
-export default class SprintsForms extends Component {
+const SprintsForms = (props) => {
+    // export default class SprintsForms extends Component {
 
-    constructor(props) {
-        super(props);
+    this.onChangeTitle = this.onChangeTitle.bind(this);
+    this.onChangeDescription = this.onChangeDescription.bind(this);
+    this.onChangeStartDate = this.onChangeStartDate.bind(this);
+    this.onChangeManager = this.onChangeManager.bind(this);
+    this.onChangeEmployee = this.onChangeEmployee.bind(this);
+    this.onChangeStatus = this.onChangeStatus.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
 
-        this.onChangeTitle = this.onChangeTitle.bind(this);
-        this.onChangeDescription = this.onChangeDescription.bind(this);
-        this.onChangeStartDate = this.onChangeStartDate.bind(this);
-        this.onChangeManager = this.onChangeManager.bind(this);
-        this.onChangeEmployee = this.onChangeEmployee.bind(this);
-        this.onChangeStatus = this.onChangeStatus.bind(this);
-        this.onSubmit = this.onSubmit.bind(this);
-
-        this.state = {
-            title: '',
-            description: '',
-            startDate: new Date(),
-            manager: [],
-            employee: [],
-            status: '',
-            employeeData: []
-        }
-    }
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [startDate, setstartDate] = useState(new Date());
+    const [manager, setManager] = useState([]);
+    const [employee, setEmployee] = useState([]);
+    const [status, setStatus] = useState("");
+    const [employeeData, setEmployeeData] = useState([]);
 
 
-    // const[validated, setValidated] = useState(false);
-
-    // const handleSubmit = (event) => {
-    //     const form = event.currentTarget;
-    //     if (form.checkValidity() === false) {
-    //         event.preventDefault();
-    //         event.stopPropagation();
-    //     }
-
-    //     setValidated(true);
-    // };
 
 
-    // employees = ['Employee 1', 'Employee 2', "Employee 3", "Employee 4"]
-    // managers = ['manager 1', 'manager 2', "manager 3", "manager 4"]
 
-    componentDidMount() {
-        this.getEmployees()
-        this.managerList()
-        console.log(this.state.employee)
-    }
-
-    employeeList() {
-        axios.get('http://localhost:5000/employee')
-            .then(response => {
-                if (response.data.length > 0) {
-                    this.setState({
-                        employee: response.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`),
+    // const employeeList = () => {
+    //     axios.get('http://localhost:5000/employee')
+    //         .then(response => {
+    //             if (response.data.length > 0) {
+    //                 this.setState({
+    //                     employee: response.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`),
 
 
-                    })
-                }
-            })
-            .catch((error) => {
-                console.log(error);
-            })
-    }
+    //                 })
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error);
+    //         })
+    // }
 
 
     // getEmployees() {
@@ -88,21 +65,21 @@ export default class SprintsForms extends Component {
 
 
 
-    managerList() {
-        axios.get('http://localhost:5000/employee')
-            .then(response => {
-                let details = [];
+    // const managerList = () => {
+    //     axios.get('http://localhost:5000/employee')
+    //         .then(response => {
+    //             let details = [];
 
-                for (var i in response.data) {
-                    details.push({ name: i, value: response.data[i] })
-                }
+    //             for (var i in response.data) {
+    //                 details.push({ name: i, value: response.data[i] })
+    //             }
 
-                this.setState({ employee: details })
+    //             this.setState({ employee: details })
 
-            })
-    }
+    //         })
+    // }
 
-    componentDidMount() {
+    useEffect(() => {
         axios.get('http://localhost:5000/employee')
             .then(response => {
                 if (response.data.length > 0) {
@@ -116,106 +93,135 @@ export default class SprintsForms extends Component {
             .catch((error) => {
                 console.log(error);
             })
-    }
+    }, [])
 
     status = ['open', 'in progress', "in review", "done"]
 
-    onChangeTitle(e) {
+    onChangeTitle = (e) => {
         this.setState({
             title: e.target.value
         })
     }
 
-    onChangeDescription(e) {
+    onChangeDescription = (e) => {
         this.setState({
             description: e.target.value
         })
     }
 
-    onChangeStartDate(date) {
+    onChangeStartDate = (date) => {
         this.setState({
             startDate: date
         })
     }
 
-    onChangeManager(e) {
+    onChangeManager = (e) => {
         this.setState({
             manager: e.target.value
         })
     }
 
-    onChangeEmployee(e) {
+    onChangeEmployee = (e) => {
         this.setState({
             employee: e.target.value
         })
     }
 
-    onChangeStatus(e) {
+    onChangeStatus = (e) => {
         this.setState({
             status: e.target.value
         })
     }
 
-    onSubmit(e) {
+    //DO NOT DELETE !!!
+    // onSubmit(e) {
+    //     e.preventDefault();
+
+    //     const project = {
+    //         title: this.state.title,
+    //         description: this.state.description,
+    //         manager: this.state.manager,
+    //         employee: this.state.employeeData,
+    //         startDate: this.state.startDate,
+    //         status: this.state.status
+    //     }
+    //     console.log(project);
+
+    //     axios.post('http://localhost:5000/projects', project)
+    //         .then(res => this.props.getSprints());
+
+    //     window.location = '/sprints';
+    // }
+
+
+    onSubmit = (e) => {
         e.preventDefault();
 
-        const project = {
+        let checkArray = [];
+        for (var key in this.state.employeeData) {
+            if (this.state.employeeData[key] === true) {
+                checkArray.push(key);
+            }
+        }
+
+        let project = {
             title: this.state.title,
             description: this.state.description,
             manager: this.state.manager,
             employee: this.state.employeeData,
             startDate: this.state.startDate,
-            status: this.state.status
-        }
-        console.log(project);
+            status: this.state.status,
+            employeeData: checkArray.toString()
+        };
 
         axios.post('http://localhost:5000/projects', project)
-            .then(res => this.props.getSprints());
+            .then(res => this.props.getSprints())
 
-        window.location = '/sprints';
     }
 
 
 
 
-    render() {
-        return (
-            <Container>
-                <Col md="4" className="mx-auto">
-                    <h1>Sprint Form</h1>
-                    <Form onSubmit={this.onSubmit}  >
-
-                        <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Label>Sprints Name</Form.Label>
-                            <Form.Control type="sprints" placeholder="Sprints Name" className="form-control"
-                                value={this.state.title}
-                                onChange={this.onChangeTitle} />
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlInput2">
-                            <Form.Label>Sprints Details</Form.Label>
-                            <Form.Control type="details" placeholder="Sprints Details"
-                                className="form-control"
-                                value={this.state.description}
-                                onChange={this.onChangeDescription} />
-                        </Form.Group>
 
 
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Manager</Form.Label>
-                            <Form.Control as="select" custom className="form-control"
-                                value={this.state.manager}
-                                onChange={this.onChangeManager}>
-                                {this.state.employee.map(function (employee) {
-                                    return <option
-                                        key={employee}
-                                        value={employee}>{employee}
-                                    </option>;
-                                })}
-                            </Form.Control>
+    return (
+        <Container>
+            <Col md="4" className="mx-auto">
+                <h1>Sprint Form</h1>
+                <Form onSubmit={this.onSubmit}  >
+
+                    <Form.Group controlId="exampleForm.ControlInput1">
+                        <Form.Label>Sprints Name</Form.Label>
+                        <Form.Control type="sprints" placeholder="Sprints Name" className="form-control"
+                            value={this.state.title}
+                            onChange={this.onChangeTitle} />
+                    </Form.Group>
+                    <Form.Group controlId="exampleForm.ControlInput2">
+                        <Form.Label>Sprints Details</Form.Label>
+                        <Form.Control type="details" placeholder="Sprints Details"
+                            className="form-control"
+                            value={this.state.description}
+                            onChange={this.onChangeDescription} />
+                    </Form.Group>
 
 
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlSelect2">
+                    <Form.Group controlId="exampleForm.ControlSelect1">
+                        <Form.Label>Manager</Form.Label>
+                        <Form.Control as="select" custom className="form-control"
+                            value={this.state.manager}
+                            onChange={this.onChangeManager}>
+                            {this.state.employee.map(function (employee) {
+                                return <option
+                                    key={employee}
+                                    value={employee}>{employee}
+                                </option>;
+                            })}
+                        </Form.Control>
+
+
+                    </Form.Group>
+                    {/* //DO NOT DELETE !!! */}
+                    {/* <Form.Group controlId="exampleForm.ControlSelect2">
                             <Form.Label>Employee</Form.Label>
                             <Form.Control as="select" multiple className="form-control"
                                 value={this.state.employee} onChange={(e) => {
@@ -228,27 +234,53 @@ export default class SprintsForms extends Component {
                                         value={employee}>{employee}
                                     </option>;
                                 })}
-                            </Form.Control>
-                        </Form.Group>
-
-                        <Form.Group controlId="exampleForm.ControlSelect3">
-                            <Form.Label>Status</Form.Label>
-                            <Form.Control as="select" custom defaultValue="Open" className="form-control"
-                                value={this.state.status}
-                                onChange={this.onChangeStatus}>
-                                {this.status.map((options) => {
-                                    return (
-                                        <option>{options}</option>
-                                    )
-                                })}
-                            </Form.Control>
-                        </Form.Group>
+                            </Form.Control> */}
 
 
-                        <Button type="submit">Submit form</Button>
-                    </Form>
-                </Col>
-            </Container >
-        );
-    }
+
+                    <div class="form-check">
+                        <input
+                            class="form-check-input"
+                            type="checkbox"
+                            onChange={(e) => {
+                                this.setState({ employeeData: e.target.value })
+                                console.log(e.target.value)
+                            }}
+                        // checked={this.state.employeeData}
+                        />
+                        <label class="form-check-label" for="defaultCheck1">
+                            {this.state.employee.map(function (employee) {
+                                return <option
+                                    key={employee}
+                                    value={employee}>{employee}
+                                </option>;
+                            })}
+                        </label>
+                    </div>
+
+
+
+                    <Form.Group controlId="exampleForm.ControlSelect3">
+                        <Form.Label>Status</Form.Label>
+                        <Form.Control as="select" custom defaultValue="Open" className="form-control"
+                            value={this.state.status}
+                            onChange={this.onChangeStatus}>
+                            {this.status.map((options) => {
+                                return (
+                                    <option>{options}</option>
+                                )
+                            })}
+                        </Form.Control>
+                    </Form.Group>
+
+
+                    <Button type="submit">Submit form</Button>
+                </Form>
+            </Col>
+        </Container >
+    );
+
 }
+
+
+export default SprintsForms;

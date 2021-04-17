@@ -13,6 +13,7 @@
     "express": "^4.17.1",
     "mdbreact": "^5.0.2",
     "mongoose": "^5.12.3",
+    "multiselect-react-dropdown": "^1.6.11",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",
     "react-dnd": "^14.0.2",
