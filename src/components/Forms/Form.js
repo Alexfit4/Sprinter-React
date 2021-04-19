@@ -12,53 +12,12 @@ const initialValues = {
   };
 export default function Forms() {
 
-	// const [EmployeeData, setEmpData] = useState({
-	// 	first: "",
-	// 	last: "",
-	// 	title:""
-	// })
-
 	const [values, setValues] = useState(initialValues);
 
-	// const[first, setFirst] = useState("")
-	// const[last, setLast] = useState()
-	// const[title, setTitle] = useState()
-	
 	const [validated, setValidated] = useState(false);
-
-	// const handleSubmit = (e) => {
-	// 	const form = e.currentTarget;
-	// 	if (form.checkValidity() === false) {
-	// 		e.preventDefault();
-	// 		e.stopPropagation();
-	// 	}
-
-	// 	setValidated(true);
-	// 	axios.post("http://localhost:5000/employee",{
-	// 		first:EmployeeData.first,
-	// 		last:EmployeeData.last,
-	// 		title:EmployeeData.title
-	// 	})
-	// 	.then(res=>{
-	// 		console.log(res.EmployeeData)
-	// 	})
-
-	// };
 
 	const handle=(e) => {
 		
-		
-		// const first = e.target.value
-		// const last = e.target.value
-		// const title = e.target.value
-		// console.log(e.target.value)
-		// setEmpData({
-		// 	first: e.target.first,
-		// 	last: e.target.last,
-		// 	title: e.target.title
-		// })
-
-		// console.log(EmployeeData)
 		const { name, value } = e.target;
 		setValues({
 		  ...values,
@@ -66,24 +25,11 @@ export default function Forms() {
 		});
 
 		console.log(e.target.value)
-
-
-		
-
-		// setFirst(first)
-		// setLast(last)
-		// setTitle(title)
-		// var newEmpData = {...EmployeeData};
-		// EmployeeData[title] = e.target.value;
-		// setEmpData(newEmpData);
-		// console.log(EmploreeData)
 	
 	}
 	const submit=(e) => {
 		e.preventDefault();
-	
-		// console.log(e.target.value)
-		// console.log(EmployeeData)
+
 		axios.post("http://localhost:5000/employee",{
 			first_name:values.first,
 			last_name:values.last,
@@ -106,14 +52,6 @@ export default function Forms() {
 			setRoles(res.data)
 		})) 
 	  }, [])
-	// const getRoleList = () => {
-	// 	getRoles()
-	// 	  .then(res => {
-	// 		setRoles(res.data)
-	// 		console.log(res.data)
-	// 	  })
-	// 	  .catch(err => console.log(err));
-	//   };
 
 	return (
 		<Col className="mx-auto addemp-form" md={12}>

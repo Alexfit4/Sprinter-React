@@ -43,6 +43,8 @@ function TableComponents() {
               LastName={emp.last_name}
               Title={emp.role.title}
               Salary={emp.role.salary}
+              id={emp._id}
+              setEmployees={setEmployees}
             />
           );
         })}
