@@ -2,6 +2,11 @@ import React from 'react'
 import Card from "../Cards/Cards"
 import CustomPieChart from "../Charts/PieChart";
 import "./dashboard.css";
+import Container from "../Container/Container";
+import Row from "../Row/Row";
+import Col from "../Col/Col";
+import DashForm from "../Forms/DashForm";
+
 const cardData = [
     {
         title: "Summary",
@@ -26,12 +31,21 @@ function Dashboard() {
     return (
         <div className='dashboard'>
             <h1>Dashboard Page</h1>
-            <div>{cardData.map((data) => {
-                return (
-                    <Card title={data.title} text={data.text} />
-                )
-            })}</div>
+            <Row>
+                <Col size="3">
+                   <DashForm />
+                </Col>
+                <Col size="4">
+                    <div>{cardData.map((data) => {
+                        return (
+                            <Card title={data.title} text={data.text} />
+                        )
+                    })}</div>
+                </Col>
+            </Row>
+           
             <br />
+
             <div className="main__title">
 
                 <div className="main__greeting mx-auto">
@@ -39,7 +53,6 @@ function Dashboard() {
                     <h1>Welcome to your admin dashboard</h1>
                 </div>
             </div>
-
 
             <div className="charts">
                 <div className="charts__left">
@@ -78,15 +91,6 @@ function Dashboard() {
                     </div>
                 </div>
             </div>
-
-
-
-
-
-
-
-
-
         </div>
     )
 }
