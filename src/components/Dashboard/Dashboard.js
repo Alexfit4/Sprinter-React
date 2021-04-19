@@ -1,56 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import Card from "../Cards/Cards"
+// import Card from "../Cards/Cards"
 import CustomPieChart from "../Charts/PieChart";
 import "./dashboard.css";
 import Container from "../Container/Container";
 import Row from "../Row/Row";
 import Col from "../Col/Col";
-import Form from 'react-bootstrap/Form';
+import {Form, Button, Card} from 'react-bootstrap/';
 import axios from "axios";
-
-// const cardData = [
-//     {
-//         title: "Project Title",
-//         text: "Description of project"
-//     },
-//     {
-//         title: "Employees",
-//         text: "Employee 1"
-//     },
-//     {
-//         title: "Managers",
-//         text: "Manager 1"
-//     },
-//     {
-//         title: "Timeline",
-//         text: "This is our Timeline"
-//     }
-
-// ]
 
 function Dashboard() {
 
-    const [cardData, setCardData] = useState([
-         {
-            title: "Project Title",
-            text: "Project Description"
-        },
-        // {
-        //     title: "Employees",
-        //     text: "Employee 1"
-        // },
-        // {
-        //     title: "Managers",
-        //     text: "Manager 1"
-        // },
-        // {
-        //     title: "Timeline",
-        //     text: "This is our Timeline"
-        // }
-    ]
-    )
-       
+// Card data state to have title of project, project description, use data to map over and display on the screen.
 
+    const [cardData, setCardData] = useState([])
+       
     const [sprintTitles, setSprintTitles] = useState([]);
 
     const [results, setResults] = useState([]);
@@ -61,6 +24,7 @@ function Dashboard() {
         axios.get(`http://localhost:5000/projects/${id}`).then(
             sprints => {
                 console.log(sprints);
+                
             }
         ).catch(error => {
             console.log(error);
@@ -73,7 +37,6 @@ function Dashboard() {
                 sprints => {
                     console.log(sprints.data[0]._id);
                     setResults(sprints.data);
-                    
                 }
             ).catch(error => {
                 console.log(error);
@@ -87,17 +50,22 @@ function Dashboard() {
         setId(e.target.value);
     }
 
+
+
     const handleClick = (e) => {
         e.preventDefault();
         axios.get(`http://localhost:5000/projects/${id}`).then(
                 sprints => {
                     console.log(sprints.data);
-                    console.log(sprints.data.description)                    
+                    console.log(sprints.data.description);
+                    setCardData(sprints.data)
                 }
             ).catch(error => {
                 console.log(error);
             })
     }
+
+    
 
     return (
         <div className='dashboard'>
@@ -107,20 +75,29 @@ function Dashboard() {
                 <Form id={id}> 
             <Form.Group>
                 <Form.Label>Your Projects</Form.Label>
-                <Form.Control size="md" as="select" multiple name="id" onChange={handleChange} onClick={runAxios}>
+                <Form.Control size="md" as="select" multiple name="id" onChange={handleChange} onClick={handleClick}  >
                    { results.map(sprints => {
                       return <option value={sprints._id} key={sprints._id}>{sprints.title} </option>
                     })}
                 </Form.Control> 
+                <button class="btn-primary" onClick={()=>  console.log(cardData)}>Display {cardData.title}</button>
             </Form.Group>
         </Form>
                 </Col>
                 <Col size="4">
-                    <div>{cardData.map((data) => {
-                        return (
-                            <Card title={data.title} text={data.text} />
-                        )
-                    })}</div>
+                    <div>
+
+                <Card>
+                    <Card.Body>
+                        <Card.Title>{cardData.title}</Card.Title>
+                        <Card.Text>
+                        {cardData.description}
+                        </Card.Text>
+                        <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                </Card>
+
+                   </div>
                 </Col>
             </Row>
            
