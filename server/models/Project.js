@@ -12,7 +12,8 @@ const projectSchema = mongoose.Schema({
         default: new Date(),
     },
     endDate: {
-        type: Date
+        type: Date,
+        default: new Date()+30
     },
     manager: {
         type: [String]
