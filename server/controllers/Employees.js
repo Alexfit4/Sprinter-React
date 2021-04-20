@@ -40,7 +40,7 @@ export const postEmployees = async (req, res) => {
     const { roleId, first_name, last_name} = req.body;
 
     try {
-        const role = await Roles.findById(roleId).orFail()
+        const role = await Roles.findById(roleId).orFail() 
         const employee = await EmployeeSchema.create({
 			first_name,
 			last_name,
