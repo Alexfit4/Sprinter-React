@@ -40,15 +40,15 @@ export const postEmployees = async (req, res) => {
     const { roleId, first_name, last_name} = req.body;
 
     try {
-        const role = await Roles.findById(roleId).orFail()
+        const role = await Roles.findById(roleId).orFail() 
         const employee = await EmployeeSchema.create({
 			first_name,
 			last_name,
 			role: role.id,
 			
 		});
-
-        return  res.json(employee);
+        const updatedEmpList =  await EmployeeSchema.find({}).populate('role', "-createdAt")
+        return  res.json({employee,updatedEmpList} );
 
     } catch (err) {
         console.log(err, "Something went wrong");
@@ -62,9 +62,13 @@ export const postEmployees = async (req, res) => {
 export const deleteEmployee = async (req, res) => {
 	const id = req.params.id;
 	try {
-		await EmployeeSchema.findByIdAndDelete(id);
-
-		return res.json({message: `Successfully deleted ${id}!`})
+	    await EmployeeSchema.findByIdAndDelete(id);
+        const updatedEmpList =  await EmployeeSchema.find({}).populate('role', "-createdAt")
+        console.log("This is an updated Emp List ", updatedEmpList);
+		return res.json({message: `Successfully deleted ${id}!`, 
+    updatedEmpList
+    
+    })
 		
 	} catch (err) {
 		console.log(err);

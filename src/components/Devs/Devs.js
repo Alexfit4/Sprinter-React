@@ -17,18 +17,22 @@ function Devs() {
         </p>
         <Row className="text-md-left">
           <DevInfo 
+img="https://avatars.githubusercontent.com/u/71408758?v=4"
               name="Johnnie Simpson"
               techs="MongoDB,HTML,Javscipt"
           />
           <DevInfo 
+              img="https://avatars.githubusercontent.com/u/69173896?v=4"
               name="Amir Ashtiany"
               techs="MongoDB,HTML,Javscipt"
           />
           <DevInfo 
+          img= "https://avatars.githubusercontent.com/u/71423804?v=4"
               name="Lu Hao"
               techs="MongoDB,HTML,Javscipt"
           />
           <DevInfo 
+          img="https://avatars.githubusercontent.com/u/46572141?v=4"
               name="Mengyue Zhang"
               techs="MongoDB,HTML,Javscipt"
           />
