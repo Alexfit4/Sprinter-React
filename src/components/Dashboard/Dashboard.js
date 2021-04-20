@@ -71,34 +71,89 @@ function Dashboard() {
         <div className='dashboard'>
             <h1>Dashboard Page</h1>
             <Row>
-                <Col size="3">
-                <Form id={id}> 
-            <Form.Group>
-                <Form.Label>Your Projects</Form.Label>
-                <Form.Control size="md" as="select" multiple name="id" onChange={handleChange} onClick={handleClick}  >
-                   { results.map(sprints => {
-                      return <option value={sprints._id} key={sprints._id}>{sprints.title} </option>
-                    })}
-                </Form.Control> 
-                <button class="btn-primary" onClick={()=>  console.log(cardData)}>Display {cardData.title}</button>
-            </Form.Group>
-        </Form>
+                <Col size="2">
+                    <Form id={id}> 
+                        <Form.Group>
+                            <Form.Label>Your Projects</Form.Label>
+                            <Form.Control size="md" as="select" multiple name="id" onChange={handleChange} onClick={handleClick}  >
+                            { results.map(sprints => {
+                                return <option value={sprints._id} key={sprints._id}>{sprints.title} </option>
+                                })}
+                            </Form.Control> 
+                            {/* <button class="btn-primary" onClick={()=>  console.log(cardData)}>Display {cardData.title}</button> */}
+                        </Form.Group>
+                    </Form>
                 </Col>
-                <Col size="4">
+                <Col size="2">
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Project: {cardData.title}</Card.Title>
+                        <Card.Text>
+                        {cardData.description}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+                <Col size="2">
+                    <Card>
+                        <Card.Body>
+                            <Card.Title>Employees</Card.Title>
+                            <Card.Text>
+                            {cardData.employee}
+                            </Card.Text>
+                        </Card.Body>
+                    </Card>
+                </Col>
+                <Col size="2">
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Managers</Card.Title>
+                        <Card.Text>
+                        {cardData.manager}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+                <Col size="2">
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Deadline</Card.Title>
+                        <Card.Text>
+                        {cardData.endDate}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                </Col>
+                {/* <Col size="2">
                     <div>
 
                 <Card>
                     <Card.Body>
-                        <Card.Title>{cardData.title}</Card.Title>
+                        <Card.Title>Project: {cardData.title}</Card.Title>
                         <Card.Text>
                         {cardData.description}
                         </Card.Text>
-                        <Button variant="primary">Go somewhere</Button>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Employees</Card.Title>
+                        <Card.Text>
+                        {cardData.employee}
+                        </Card.Text>
+                    </Card.Body>
+                </Card>
+                <Card>
+                    <Card.Body>
+                        <Card.Title>Managers</Card.Title>
+                        <Card.Text>
+                        {cardData.manager}
+                        </Card.Text>
                     </Card.Body>
                 </Card>
 
                    </div>
-                </Col>
+                </Col> */}
             </Row>
            
             <br />
