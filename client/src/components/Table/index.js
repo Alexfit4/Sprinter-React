@@ -4,13 +4,11 @@ import TableRow from '../TableRow';
 import axios from "axios";
 
 
-function TableComponents() {
+function TableComponents(props) {
 
   function getEmployees() {
     return axios.get("http://localhost:5000/employee")
   }
-
-  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
     getAllEmployees();
@@ -18,7 +16,7 @@ function TableComponents() {
   const getAllEmployees = () => {
     getEmployees()
       .then(res => {
-        setEmployees(res.data)
+        props.setEmployees(res.data)
         console.log(res.data)
       })
       .catch(err => console.log(err));
@@ -35,7 +33,7 @@ function TableComponents() {
         </tr>
       </thead>
       <tbody>
-        {employees.map(emp => {
+        {props.employees.map(emp => {
           return (
             <TableRow
               key={emp._id}
@@ -43,6 +41,8 @@ function TableComponents() {
               LastName={emp.last_name}
               Title={emp.role.title}
               Salary={emp.role.salary}
+              id={emp._id}
+              setEmployees={props.setEmployees}
             />
           );
         })}

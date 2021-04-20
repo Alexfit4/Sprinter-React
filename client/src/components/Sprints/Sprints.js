@@ -34,7 +34,7 @@ const Sprints = () => {
 
     const getSprints = () => {
 
-        axios.get("http://localhost:5000/projects/")
+        axios.get("http://localhost:5000/projects")
             .then(sprints => {
                 console.log(sprints.data)
 
@@ -53,6 +53,7 @@ const Sprints = () => {
                 console.log(error)
             })
 
+        console.log(items)
     }
 
     useEffect(getSprints, [])

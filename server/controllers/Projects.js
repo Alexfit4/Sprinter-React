@@ -13,6 +13,20 @@ export const getProjects = async (req, res) => {
 	}
 };
 
+// READ One Project
+export const getOneProject = async (req, res) => {
+	const id = req.params.id;
+	try {
+		const getProject = await ProjectSchema.findById(id);
+
+		console.log(getProject, "here");
+
+		return res.status(200).json(getProject);
+	} catch (error) {
+		return res.status(404).json({ message: error.message });
+	}
+};
+
 // CREATE Projects
 export const postProjects = async (req, res) => {
 	const { title, description, manager, employee, status } = req.body;

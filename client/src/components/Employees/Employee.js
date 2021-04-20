@@ -1,30 +1,25 @@
-import React from 'react';
+import React, {useState} from 'react';
 import TableComponents from "../Table"
 import {FormEmployeeData} from '../Forms/FormEmployeeData.js'
 import Forms from '../Forms/Form'
 import {Col, Row, Container} from "react-bootstrap";
 
 function Employee() {   
-
+    const [employees, setEmployees] = useState([]);
 
     return (
         <Container>
         <Row>
         <div className='employee'>
             <h1>Employee Page</h1>
-            <TableComponents/>
-                    <Forms/>
-            {/* {FormEmployeeData.map((data) => {
-                return (
-                    <Forms
-                     first={data.first}
-                     last={data.last}
-                     role={data.title} 
-                     email={data.email}
-                     password={data.password}                    
-                     />
-                )
-            })} */}
+            <TableComponents
+                employees={employees}
+                setEmployees={setEmployees}
+            />
+                    <Forms 
+                    setEmployees={setEmployees}
+                        
+                    />
         </div>
         </Row>
         </Container>
