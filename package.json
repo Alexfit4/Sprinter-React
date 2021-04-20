@@ -1,41 +1,9 @@
 {
-<<<<<<< HEAD
   "name": "server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "type": "module",
-=======
-  "name": "sprinter",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@material-ui/core": "^4.11.3",
-    "@testing-library/jest-dom": "^5.11.10",
-    "@testing-library/react": "^11.2.6",
-    "@testing-library/user-event": "^12.8.3",
-    "axios": "^0.21.1",
-    "bootstrap": "^4.6.0",
-    "cdbreact": "^1.1.0",
-    "express": "^4.17.1",
-    "mdbreact": "^5.0.2",
-    "mongoose": "^5.12.3",
-    "multiselect-react-dropdown": "^1.6.11",
-    "react": "^17.0.2",
-    "react-bootstrap": "^1.5.2",
-    "react-dnd": "^14.0.2",
-    "react-dnd-html5-backend": "^14.0.0",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-pro-sidebar": "^0.6.0",
-    "react-router-dom": "^5.2.0",
-    "react-scripts": "4.0.3",
-    "react-select": "^4.3.0",
-    "recharts": "^2.0.9",
-    "startbootstrap-simple-sidebar": "^5.1.3",
-    "web-vitals": "^1.1.1"
-  },
->>>>>>> 075fe5e9c6f2ddc093741c235f281e1c9dfb4ecf
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "if-env NODE_ENV=production && npm run start:prod || npm run start:dev",
@@ -50,11 +18,10 @@
     "nodemon": "^2.0.7"
   },
   "dependencies": {
-    "body-parser": "^1.19.0",    
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "express": "^4.17.1",
     "if-env": "^1.0.4",
     "mongoose": "^5.12.3"
-    
   }
 }
