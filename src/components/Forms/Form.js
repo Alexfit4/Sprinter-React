@@ -10,7 +10,7 @@ const initialValues = {
 	last: "",
 	id: "",
   };
-export default function Forms() {
+export default function Forms(props) {
 
 	const [values, setValues] = useState(initialValues);
 
@@ -36,7 +36,8 @@ export default function Forms() {
 			roleId:values.id
 		})
 		.then(res=>{
-			console.log(res)
+			console.log(res.data.updatedEmpList)
+			props.setEmployees(res.data.updatedEmpList)
 		})
 		.catch(err=>console.log(err))
 		console.log(values)
