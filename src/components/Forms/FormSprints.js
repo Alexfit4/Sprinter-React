@@ -1,7 +1,6 @@
 import React, { useState, useEffect, Component } from "react";
 import { Form, Button, Col, Container, h1, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
-import { Multiselect } from 'multiselect-react-dropdown';
 import Select from "react-select";
 
 const SprintsForms = (props) => {
@@ -23,13 +22,13 @@ const SprintsForms = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
-    const [status, setStatus] = useState(['OPEN', 'IN PROGRESS', "IN REVIEW", "DONE"]);
+    const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
     const [employeeData, setEmployeeData] = useState([]);
-    const [selectedEmployee, setSelectedEmployee] = useState("none");
+    // const [selectedEmployee, setSelectedEmployee] = useState("none");
 
-    const handleTypeSelect = e => {
-        setSelectedEmployee(e.value);
-    };
+    // const handleTypeSelect = e => {
+    //     setSelectedEmployee(e.value);
+    // };
 
 
     // const status = ['open', 'in progress', "in review", "done"]
@@ -168,28 +167,29 @@ const SprintsForms = (props) => {
     // }
 
 
+
     const onSubmit = (e) => {
         e.preventDefault();
 
-        let checkArray = [];
-        for (var key in this.state.employeeData) {
-            if (this.state.employeeData[key] === true) {
-                checkArray.push(key);
-            }
-        }
+        // let checkArray = [];
+        // for (var key in this.state.employeeData) {
+        //     if (this.state.employeeData[key] === true) {
+        //         checkArray.push(key);
+        //     }
+        // }
 
         let project = {
-            title: this.state.title,
-            description: this.state.description,
-            manager: this.state.manager,
-            employee: this.state.employee,
-            startDate: this.state.startDate,
-            status: this.state.status,
-            employeeData: checkArray.toString()
+            title: title,
+            description: description,
+            manager: manager,
+            employee: employee,
+            startDate: startDate,
+            status: status,
+            // employeeData: checkArray.toString()
         };
 
         axios.post('http://localhost:5000/projects', project)
-            .then(res => this.props.getSprints())
+            .then(res => props.getSprints())
 
     }
 
@@ -308,11 +308,17 @@ const SprintsForms = (props) => {
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
-                            {status.map((options) => {
+                            {/* {status.map((options) => {
                                 return (
                                     <option>{options}</option>
                                 )
-                            })}
+                            })} */}
+
+                            <option>Open</option>
+                            <option>In Progress</option>
+                            <option>In Review</option>
+                            <option>Done</option>
+
                         </Form.Control>
                     </Form.Group>
 
