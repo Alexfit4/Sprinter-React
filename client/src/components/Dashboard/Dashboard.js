@@ -56,9 +56,11 @@ function Dashboard() {
         e.preventDefault();
         axios.get(`http://localhost:5000/projects/${id}`).then(
                 sprints => {
-                    console.log(sprints.data);
+                    console.log(typeof sprints.data, "here");
                     console.log(sprints.data.description);
-                    setCardData(sprints.data)
+                    let array = []
+                    array.push(sprints.data)
+                    setCardData(array)
                 }
             ).catch(error => {
                 console.log(error);
@@ -68,8 +70,8 @@ function Dashboard() {
     
 
     return (
-        <div className='dashboard'>
-            <h1>Dashboard Page</h1>
+        <div className='dashboard pl-5'>
+            <h1>Welcome to Your Dashboard</h1>
             <Row>
                 <Col size="2">
                     <Form id={id}> 
@@ -80,50 +82,62 @@ function Dashboard() {
                                 return <option value={sprints._id} key={sprints._id}>{sprints.title} </option>
                                 })}
                             </Form.Control> 
-                            {/* <button class="btn-primary" onClick={()=>  console.log(cardData)}>Display {cardData.title}</button> */}
                         </Form.Group>
                     </Form>
                 </Col>
-                <Col size="2">
-                <Card>
-                    <Card.Body>
-                        <Card.Title>Project: {cardData.title}</Card.Title>
-                        <Card.Text>
-                        {cardData.description}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
+                <Col size="10">
+                {cardData.length > 0 ? cardData.map((data) => {
+                    return (
+                        <div>
+                            <Row>
+                            <Col size="2">
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>Project: {data.title}</Card.Title>
+                                        <Card.Text>
+                                        {data.description}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col size="2">
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>Employees</Card.Title>
+                                        <Card.Text>
+                                        {data.employee}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col size="2">
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>Managers</Card.Title>
+                                        <Card.Text>
+                                        {data.manager}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            <Col size="2">
+                                <Card>
+                                    <Card.Body>
+                                        <Card.Title>Deadline</Card.Title>
+                                        <Card.Text>
+                                        {data.endDate}
+                                        </Card.Text>
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                            </Row>
+                            
+                        </div>
+                    )
+                }) : null}
                 </Col>
-                <Col size="2">
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>Employees</Card.Title>
-                            <Card.Text>
-                            {cardData.employee}
-                            </Card.Text>
-                        </Card.Body>
-                    </Card>
-                </Col>
-                <Col size="2">
-                <Card>
-                    <Card.Body>
-                        <Card.Title>Managers</Card.Title>
-                        <Card.Text>
-                        {cardData.manager}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
-                <Col size="2">
-                <Card>
-                    <Card.Body>
-                        <Card.Title>Deadline</Card.Title>
-                        <Card.Text>
-                        {cardData.endDate}
-                        </Card.Text>
-                    </Card.Body>
-                </Card>
-                </Col>
+                
+                
                 {/* <Col size="2">
                     <div>
 
