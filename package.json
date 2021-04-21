@@ -10,6 +10,7 @@
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "cdbreact": "^1.1.0",
+    "concurrently": "^6.0.2",
     "express": "^4.17.1",
     "mdbreact": "^5.0.2",
     "mongoose": "^5.12.3",
