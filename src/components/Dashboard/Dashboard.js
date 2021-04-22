@@ -2,10 +2,7 @@ import React, { useState, useEffect } from 'react';
 // import Card from "../Cards/Cards"
 import CustomPieChart from "../Charts/PieChart";
 import "./dashboard.css";
-import Container from "../Container/Container";
-import Row from "../Row/Row";
-import Col from "../Col/Col";
-import {Form, Button, Card} from 'react-bootstrap/';
+import {Row, Col,Form, Button, Card, Container} from 'react-bootstrap/';
 import axios from "axios";
 
 function Dashboard() {
@@ -68,10 +65,11 @@ function Dashboard() {
     
 
     return (
+        <Container>
         <div className='dashboard'>
             <h1>Dashboard Page</h1>
             <Row>
-                <Col size="2">
+                <Col lg={2} sm={12}>
                     <Form id={id}> 
                         <Form.Group>
                             <Form.Label>Your Projects</Form.Label>
@@ -84,7 +82,7 @@ function Dashboard() {
                         </Form.Group>
                     </Form>
                 </Col>
-                <Col size="2">
+                <Col lg={2} sm={12}>
                 <Card>
                     <Card.Body>
                         <Card.Title>Project: {cardData.title}</Card.Title>
@@ -94,7 +92,7 @@ function Dashboard() {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col size="2">
+                <Col lg={2} sm={12}>
                     <Card>
                         <Card.Body>
                             <Card.Title>Employees</Card.Title>
@@ -104,7 +102,7 @@ function Dashboard() {
                         </Card.Body>
                     </Card>
                 </Col>
-                <Col size="2">
+                <Col lg={2} sm={12}>
                 <Card>
                     <Card.Body>
                         <Card.Title>Managers</Card.Title>
@@ -114,7 +112,7 @@ function Dashboard() {
                     </Card.Body>
                 </Card>
                 </Col>
-                <Col size="2">
+                <Col lg={2} sm={12}>
                 <Card>
                     <Card.Body>
                         <Card.Title>Deadline</Card.Title>
@@ -204,6 +202,7 @@ function Dashboard() {
                 </div>
             </div>
         </div>
+        </Container>
     )
 }
 

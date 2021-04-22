@@ -7,7 +7,7 @@ import SprintsCol from "../Col/SprintsCol";
 import { data, statuses } from "../../data/index";
 import "./index.css";
 import axios from "axios";
-
+import {Container} from 'react-bootstrap/';
 const Sprints = () => {
 
     const [items, setItems] = useState();
@@ -62,27 +62,29 @@ const Sprints = () => {
 
 
     return (
-
-        <div className='sprints'>
-            <SprintsForms getSprints={getSprints} />
-            <div className={"row"}>
-                {statuses.map(s => {
-                    return (
-                        <div key={s.status} className={"col-wrapper"}>
-                            <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
-                            <DropWrapper onDrop={onDrop} status={s.status}>
-                                <SprintsCol>
-                                    {items ? items
-                                        .filter(i => i.status === s.status)
-                                        .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
-                                        : null
-                                    }
-                                </SprintsCol>
-                            </DropWrapper>
-                        </div>
-                    );
-                })}
+        
+            <div className='sprints'>
+                <SprintsForms getSprints={getSprints} />
+                <div className={"row"}>
+                    {statuses.map(s => {
+                        return (
+                            <div key={s.status} className={"col-wrapper"}>
+                                <h2 className={"col-header"}>{s.status.toUpperCase()}</h2>
+                                <DropWrapper onDrop={onDrop} status={s.status}>
+                                    <SprintsCol>
+                                        {items ? items
+                                            .filter(i => i.status === s.status)
+                                            .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
+                                            : null
+                                        }
+                                    </SprintsCol>
+                                </DropWrapper>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
+     
 
 
 
@@ -92,11 +94,6 @@ const Sprints = () => {
 
 
 
-
-
-
-
-        </div>
     )
 };
 
