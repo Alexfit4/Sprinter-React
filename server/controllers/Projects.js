@@ -29,11 +29,11 @@ export const getOneProject = async (req, res) => {
 
 // CREATE Projects
 export const postProjects = async (req, res) => {
-	const { title, description, manager, employee, status } = req.body;
+	const { title, description, startDate, endDate, manager, employee, status } = req.body;
 
 	try {
 		const project = await ProjectSchema.create({
-			title, description, manager, employee, status
+			title, description, startDate, endDate, manager, employee, status
 		});
 
 		return res.status(200).json(project);
