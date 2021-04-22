@@ -45,7 +45,7 @@ export const postProjects = async (req, res) => {
 
 // UPDATE Projects
 export const updateProjects = async (req, res) => {
-	const fixProject = { title: req.body.title, description: req.body.description };
+	const fixProject = { title: req.body.title, description: req.body.description, status: req.body.status };
 
 	try {
 		const project = await ProjectSchema.findOneAndUpdate(
@@ -54,6 +54,7 @@ export const updateProjects = async (req, res) => {
 				$set: {
 					title: fixProject.title,
 					description: fixProject.description,
+					status: fixProject.status,
 					modified: Date.now()
 				}
 			},
@@ -82,3 +83,5 @@ export const deleteProjects = async (req, res) => {
 		return res.status(500).json({ err: "Something went wrong" })
 	}
 };
+
+
