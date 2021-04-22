@@ -28,6 +28,7 @@ const SprintsForms = (props) => {
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
 
     const [employeeData, setEmployeeData] = useState([]);
+    const [newEmployee, setNewEmployee] = useState([])
     // const [selectedEmployee, setSelectedEmployee] = useState("none");
 
     // const handleTypeSelect = e => {
@@ -188,7 +189,7 @@ const SprintsForms = (props) => {
             title: title,
             description: description,
             manager: manager,
-            employee: employee,
+            employee: newEmployee,
             startDate: startDate,
             status: status,
             // employeeData: checkArray.toString()
@@ -208,16 +209,17 @@ const SprintsForms = (props) => {
         }
     })
 
-    // const handleChange = multiOption => {
+    const handleChange = selectedOption => {
+        let array = [];
+        selectedOption.map((data) => {
+            // let obj = { value: data.value, label: data.label }
 
+            array.push(data.value);
+            setNewEmployee(array);
+        })
 
-    //     setMultiOption(multiOption)
-
-    // };
-
-    const handleChange = (e) => ((setEmployee[e.target.value]))
-
-    //    const handleChange(e) {
+        console.log(newEmployee, 'here');
+    };
 
     //     setEmployee({ selectedOption: e.target.value });
     //       }
@@ -293,7 +295,7 @@ const SprintsForms = (props) => {
 
                     <Form>Employee</Form>
                     <div>
-                        <Select value={props.selectValue} options={employeeOption} onChange={() => handleChange} isMulti />
+                        <Select options={employeeOption} onChange={handleChange} isMulti />
                     </div>
 
 
