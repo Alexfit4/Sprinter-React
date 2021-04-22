@@ -24,6 +24,7 @@ const SprintsForms = (props) => {
     const [employee, setEmployee] = useState([]);
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
     const [employeeData, setEmployeeData] = useState([]);
+    const [newEmployee, setNewEmployee] = useState([])
     // const [selectedEmployee, setSelectedEmployee] = useState("none");
 
     // const handleTypeSelect = e => {
@@ -203,9 +204,17 @@ const SprintsForms = (props) => {
     })
 
     const handleChange = selectedOption => {
+        let array = [];
+        selectedOption.map((data) => {
+            let obj = {value: data.value, label: data.label}
+            array.push(obj);
+            setNewEmployee(array);
+            
+        })
 
+        
 
-        console.log(selectedOption);
+        console.log(newEmployee, 'here');
     };
 
 
