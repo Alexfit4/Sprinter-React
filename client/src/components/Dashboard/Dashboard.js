@@ -20,6 +20,8 @@ function Dashboard() {
 
     const [id, setId] = useState();
 
+    const [deadline, setDeadline] = useState();
+
     const runAxios = () => {
         axios.get(`http://localhost:5000/projects/${id}`).then(
             sprints => {
@@ -30,6 +32,32 @@ function Dashboard() {
             console.log(error);
         })
     }
+
+    const calculateDeadline = () => {
+        axios.get(`http://localhost:5000/projects/${id}`).then(
+            sprints => {
+                console.log(sprints.data.startDate);
+                var date1 = new Date(sprints.data.startDate);
+                var date2 = new Date(sprints.data.endDate);
+                  
+                // To calculate the time difference of two dates
+                var Difference_In_Time = date2.getTime() - date1.getTime();
+                  
+                // To calculate the no. of days between two dates
+                var Difference_In_Days = Math.round(Difference_In_Time / (1000 * 3600 * 24));
+                  
+                //To display the final no. of days (result)
+                console.log("Total number of days between dates  <br>"
+                               + date1 + "<br> and <br>" 
+                               + date2 + " is: <br> " 
+                               + Difference_In_Days);
+                setDeadline(Difference_In_Days);
+                console.log(deadline)
+            }
+        )
+    }
+
+    
 
     useEffect(
         () => {
@@ -61,6 +89,7 @@ function Dashboard() {
                     let array = []
                     array.push(sprints.data)
                     setCardData(array)
+                    calculateDeadline();
                 }
             ).catch(error => {
                 console.log(error);
@@ -123,9 +152,11 @@ function Dashboard() {
                             <Col size="2">
                                 <Card>
                                     <Card.Body>
-                                        <Card.Title>Deadline</Card.Title>
+                                        <Card.Title>Deadline / Days Remaining</Card.Title>
                                         <Card.Text>
-                                        {data.endDate}
+                                            {data.endDate}
+                                            <br />
+                                        {deadline}
                                         </Card.Text>
                                     </Card.Body>
                                 </Card>
