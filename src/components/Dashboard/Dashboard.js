@@ -65,9 +65,7 @@ function Dashboard() {
     
 
     return (
-        <Container>
-        <div className='dashboard'>
-            <h1>Dashboard Page</h1>
+        <Container className='dashboard'>
             <Row>
                 <Col lg={2} sm={12}>
                     <Form id={id}> 
@@ -155,22 +153,21 @@ function Dashboard() {
             </Row>
            
             <br />
-
             <div className="main__title">
-
                 <div className="main__greeting mx-auto">
                     <br />
                     <h1>Welcome to your admin dashboard</h1>
                 </div>
             </div>
-
+           
+            <Row>
             <div className="charts">
                 <div className="charts__left">
                     <div className="charts__left__title" />
                     <CustomPieChart />
                 </div>
 
-                <div className="charts__right">
+                <Col className="charts__right">
                     <div className="charts__right__title">
                         <div>
                             <h1>Status Reports</h1>
@@ -178,7 +175,7 @@ function Dashboard() {
                         </div>
                     </div>
 
-                    <div className="charts__right__cards">
+                    <Col className="charts__right__cards">
                         <div className="card1">
                             <h1>Open</h1>
                             <h3>5</h3>
@@ -198,10 +195,10 @@ function Dashboard() {
                             <h1>Done</h1>
                             <h3>5</h3>
                         </div>
-                    </div>
-                </div>
+                    </Col>
+                </Col>
             </div>
-        </div>
+        </Row>
         </Container>
     )
 }
