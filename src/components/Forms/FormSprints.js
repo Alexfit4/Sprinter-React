@@ -22,7 +22,11 @@ const SprintsForms = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
+
+    const [multiOption, setMultiOption] = useState([]);
+
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
+
     const [employeeData, setEmployeeData] = useState([]);
     // const [selectedEmployee, setSelectedEmployee] = useState("none");
 
@@ -97,8 +101,10 @@ const SprintsForms = (props) => {
     useEffect(() => {
         axios.get('http://localhost:5000/employee')
             .then(res => {
+
                 setEmployee(res.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`)
                 )
+
             })
             .catch((error) => {
                 console.log(error);
@@ -194,20 +200,27 @@ const SprintsForms = (props) => {
     }
 
 
-    const employeeOption = employee.map((selectedOption) => {
+    const employeeOption = employee.map((allOptions) => {
 
         return {
-            value: selectedOption,
-            label: selectedOption
+            value: allOptions,
+            label: allOptions
         }
     })
 
-    const handleChange = selectedOption => {
+    // const handleChange = multiOption => {
 
 
-        console.log(selectedOption);
-    };
+    //     setMultiOption(multiOption)
 
+    // };
+
+    const handleChange = (e) => ((setEmployee[e.target.value]))
+
+    //    const handleChange(e) {
+
+    //     setEmployee({ selectedOption: e.target.value });
+    //       }
 
 
     return (
@@ -273,32 +286,14 @@ const SprintsForms = (props) => {
                                     return <option
                                         key={employee}
                                         value={employee}>{employee}
-                                    </option>;
+                                    </option>;selectedOption
                                 })}
                             </Form.Control> */}
 
 
                     <Form>Employee</Form>
-                    {/* <div class="form-check">
-                        <input
-                            class="form-check-input"
-                            type="checkbox"
-                            onChange={(e) => {
-                                setEmployeeData(e.target.value)
-                                console.log(e.target.value)
-                            }}
-                        />
-                        <label class="form-check-label" for="defaultCheck1">
-                            {employee.map((employee) => {
-                                return <option
-                                    key={employee}
-                                    value={employee}>{employee}
-                                </option>;
-                            })}
-                        </label>
-                    </div> */}
                     <div>
-                        <Select options={employeeOption} onChange={handleChange} isMulti />
+                        <Select value={props.selectValue} options={employeeOption} onChange={() => handleChange} isMulti />
                     </div>
 
 
@@ -308,16 +303,10 @@ const SprintsForms = (props) => {
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
-                            {/* {status.map((options) => {
-                                return (
-                                    <option>{options}</option>
-                                )
-                            })} */}
-
-                            <option>Open</option>
-                            <option>In Progress</option>
-                            <option>In Review</option>
-                            <option>Done</option>
+                            <option>open</option>
+                            <option>in progress</option>
+                            <option>in review</option>
+                            <option>done</option>
 
                         </Form.Control>
                     </Form.Group>
