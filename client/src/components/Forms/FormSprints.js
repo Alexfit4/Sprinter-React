@@ -313,6 +313,30 @@ const SprintsForms = (props) => {
                         </Form.Control>
                     </Form.Group>
 
+                    <Form.Group controlId="exampleForm.ControlSelect3">
+                        <Form.Label>Status</Form.Label>
+                        <Form.Control as="select" custom defaultValue="Open" className="form-control"
+                            value={status}
+                            onChange={(e) => setStatus(e.target.value)}
+                        >
+
+
+                            <DatePicker datePickerType="range">
+                                <DatePickerInput
+                                    id="date-picker-input-id-start"
+                                    placeholder="mm/dd/yyyy"
+                                    labelText="Start date"
+                                />
+                                <DatePickerInput
+                                    id="date-picker-input-id-finish"
+                                    placeholder="mm/dd/yyyy"
+                                    labelText="End date"
+                                />
+                            </DatePicker>
+
+
+                        </Form.Control>
+                    </Form.Group>
 
                     <Button type="submit">Submit form</Button>
                 </Form>
