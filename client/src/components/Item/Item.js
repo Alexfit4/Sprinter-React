@@ -33,6 +33,8 @@ const Item = ({ item, index, moveItem, status, }) => {
             }
             moveItem(dragIndex, hoverIndex);
             item.index = hoverIndex;
+
+            console.log("this is", moveItem)
         },
     });
 
@@ -42,6 +44,8 @@ const Item = ({ item, index, moveItem, status, }) => {
         collect: monitor => ({
             isDragging: monitor.isDragging()
         })
+
+
     });
 
     const [show, setShow] = useState(false);
