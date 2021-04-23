@@ -55,7 +55,7 @@ export default function Forms(props) {
 	  }, [])
 
 	return (
-		<Col className="mx-auto addemp-form" md={12}>
+		<Col className="mx-auto addemp-form" md={4} md="4" className="mx-auto mb-2">
 		<h3>Add Employees</h3>
 		<Form noValidate validated={validated} onSubmit={submit}>
 			<Form.Group>

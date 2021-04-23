@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import TableRow from '../TableRow';
 import axios from "axios";
+import "../../App.css"
 
 
 function TableComponents(props) {
@@ -23,7 +24,7 @@ function TableComponents(props) {
   };
   return (
 
-    <Table striped bordered hover size="sm">
+    <Table striped bordered hover size="sm" className="EmpTable">
       <thead>
         <tr>
           <th>First Name</th>

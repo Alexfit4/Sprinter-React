@@ -19,9 +19,14 @@
 } */
 
 .delete-icon {
-  margin-left:2rem;
+  width:50%;
+  display: inline;
 }
 
 .App {
   background-color: #E9F1F7;
+}
+
+.EmpTable{
+  margin-top:20px;
 }
