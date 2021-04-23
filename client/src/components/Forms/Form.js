@@ -29,6 +29,13 @@ export default function Forms(props) {
 	}
 	const submit=(e) => {
 		e.preventDefault();
+		const form = e.currentTarget;
+		if (form.checkValidity() === false) {
+		  e.preventDefault();
+		  e.stopPropagation();
+		}
+	
+		setValidated(true);
 
 		axios.post("http://localhost:5000/employee",{
 			first_name:values.first,
@@ -56,8 +63,8 @@ export default function Forms(props) {
 
 	return (
 		<Col className="mx-auto addemp-form" md={4} md="4" className="mx-auto mb-2">
-		<h3>Add Employees</h3>
-		<Form noValidate validated={validated} onSubmit={submit}>
+		<Form className = "empForm" noValidate validated={validated} onSubmit={submit}>
+		<h4 className="empFormTitle">Add Employees</h4>
 			<Form.Group>
 				<Form.Label>First Name</Form.Label>
 				<Form.Control required type="text" id = "first" name="first" placeholder="First Name"  onChange={handle}/>
@@ -82,7 +89,7 @@ export default function Forms(props) {
 					})}
 				</Form.Control>
 			</Form.Group>
-			<Button variant="primary" type="submit">
+			<Button className="empFormBtn" type="submit">
 				Submit</Button>
 		</Form>
 		</Col>

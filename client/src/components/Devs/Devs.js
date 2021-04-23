@@ -7,7 +7,7 @@ function Devs() {
     return (
 <Container>
         <div className='devs'>
-           <Card className="my-5 px-5 pb-1 text-center">
+           <Card className="devsCard my-5 px-5 pb-1 text-center">
       <Card.Body>
         <h2 className="h1-responsive font-weight-bold my-5">
           Our amazing team

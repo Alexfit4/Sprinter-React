@@ -23,34 +23,35 @@ function TableComponents(props) {
       .catch(err => console.log(err));
   };
   return (
+    <div>
+      <h3 className="empTableTitle">Current Employees</h3>
+      <Table striped bordered hover size="sm" className="EmpTable">
+        <thead>
+          <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Title</th>
+            <th>Salary</th>
+          </tr>
+        </thead>
+        <tbody>
+          {props.employees.map(emp => {
+            return (
+              <TableRow
+                key={emp._id}
+                FirstName={emp.first_name}
+                LastName={emp.last_name}
+                Title={emp.role.title}
+                Salary={emp.role.salary}
+                id={emp._id}
+                setEmployees={props.setEmployees}
+              />
+            );
+          })}
 
-    <Table striped bordered hover size="sm" className="EmpTable">
-      <thead>
-        <tr>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Title</th>
-          <th>Salary</th>
-        </tr>
-      </thead>
-      <tbody>
-        {props.employees.map(emp => {
-          return (
-            <TableRow
-              key={emp._id}
-              FirstName={emp.first_name}
-              LastName={emp.last_name}
-              Title={emp.role.title}
-              Salary={emp.role.salary}
-              id={emp._id}
-              setEmployees={props.setEmployees}
-            />
-          );
-        })}
-
-      </tbody>
-    </Table>
-
+        </tbody>
+      </Table>
+    </div>
   )
 }
 
