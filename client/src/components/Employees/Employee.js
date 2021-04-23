@@ -12,14 +12,14 @@ function Employee() {
         <Row>
         <div className='employee'>
             <h1>Employee Page</h1>
-            <TableComponents
-                employees={employees}
-                setEmployees={setEmployees}
-            />
                     <Forms 
                     setEmployees={setEmployees}
                         
                     />
+                    <TableComponents
+                employees={employees}
+                setEmployees={setEmployees}
+            />
         </div>
         </Row>
         </Container>
