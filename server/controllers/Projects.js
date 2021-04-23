@@ -1,5 +1,5 @@
 import ProjectSchema from '../models/Project.js';
-
+import Section from '../models/Section.js';
 // READ Projects
 export const getProjects = async (req, res) => {
 	try {
@@ -45,7 +45,7 @@ export const postProjects = async (req, res) => {
 
 // UPDATE Projects
 export const updateProjects = async (req, res) => {
-	const fixProject = { title: req.body.title, description: req.body.description };
+	const fixProject = { title: req.body.title, description: req.body.description, status: req.body.status };
 
 	try {
 		const project = await ProjectSchema.findOneAndUpdate(
@@ -54,6 +54,7 @@ export const updateProjects = async (req, res) => {
 				$set: {
 					title: fixProject.title,
 					description: fixProject.description,
+					status: fixProject.status,
 					modified: Date.now()
 				}
 			},
@@ -82,3 +83,22 @@ export const deleteProjects = async (req, res) => {
 		return res.status(500).json({ err: "Something went wrong" })
 	}
 };
+
+
+export function moveCardsBetweenSections(req, res) {
+
+	const { targetSectionId, cardId, sourceSectionId } = req.body;
+
+	ProjectSchema.findOne({ id: cardId }).exec((err, movedCard) => {
+		Section.findOne({ id: sourceSectionId }).exec((err, sourceSection) => {
+			sourceSection.cards.pull(movedCard);
+			sourceSection.save();
+		})
+			.then(Section.findOne({ id: targetSectionId }).exec((err, targetSection) => {
+				targetSection.cards.push(movedCard);
+				targetSection.save();
+			}))
+			.then(res.status(200).end());
+	});
+
+}

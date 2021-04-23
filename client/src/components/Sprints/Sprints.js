@@ -44,7 +44,7 @@ const Sprints = () => {
                         // icon: "⭕️",
                         status: sprint.status,
                         title: sprint.title,
-                        content: sprint.description
+                        content: sprint.description[0]
                     }
                 })
                 console.log(results)
@@ -54,12 +54,18 @@ const Sprints = () => {
             })
 
         console.log(items)
+        console.log(statuses)
     }
+
+
 
     useEffect(getSprints, [])
 
 
+    const moveCards = () => {
+        axios.put("http://localhost:5000/projects/:id")
 
+    }
 
     return (
 
@@ -76,6 +82,7 @@ const Sprints = () => {
                                         .filter(i => i.status === s.status)
                                         .map((i, idx) => <Item key={i.id} item={i} index={idx} moveItem={moveItem} status={s} />)
                                         : null
+
                                     }
                                 </SprintsCol>
                             </DropWrapper>
