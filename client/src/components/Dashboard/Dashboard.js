@@ -2,10 +2,9 @@ import React, { useState, useEffect } from 'react';
 // import Card from "../Cards/Cards"
 import CustomPieChart from "../Charts/PieChart";
 import "./dashboard.css";
-import Container from "../Container/Container";
 import Row from "../Row/Row";
 import Col from "../Col/Col";
-import {Form, Button, Card} from 'react-bootstrap/';
+import {Form, Button, Card, Container} from 'react-bootstrap/';
 import axios from "axios";
 
 function Dashboard() {
@@ -99,6 +98,7 @@ function Dashboard() {
     
 
     return (
+        <Container>
         <div className='dashboard pl-5'>
             <h1>Welcome to Your Dashboard</h1>
             <Row>
@@ -249,6 +249,7 @@ function Dashboard() {
                 </div>
             </div>
         </div>
+        </Container>
     )
 }
 
