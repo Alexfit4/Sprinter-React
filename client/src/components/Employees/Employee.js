@@ -11,15 +11,15 @@ function Employee() {
         <Container>
         <Row>
         <div className='employee'>
-            <h1>Employee Page</h1>
-            <TableComponents
-                employees={employees}
-                setEmployees={setEmployees}
-            />
+            {/* <h1>Manage Employees</h1> */}
                     <Forms 
                     setEmployees={setEmployees}
                         
                     />
+                    <TableComponents
+                employees={employees}
+                setEmployees={setEmployees}
+            />
         </div>
         </Row>
         </Container>

@@ -1,9 +1,10 @@
 .navbar {
-	background-color: #0f4c75;
-	height: 60px;
+	background-color: #2274a5;
+	height: 70px;
 	display: flex;
 	justify-content: flex-start;
 	align-items: center;
+	margin-bottom:20px;
   }
   
   .menu-bars {
@@ -13,7 +14,7 @@
   }
   
   .nav-menu {
-	background-color: #0f4c75;
+	background-color: #5aa6d3;
 	width: 250px;
 	height: 100vh;
 	display: flex;
@@ -52,7 +53,7 @@
   }
   
   .nav-text a:hover {
-	background-color:#0f4c75;
+	background-color:#5aa6d3;
   }
   
   .nav-menu-items, ul {
@@ -60,7 +61,7 @@
   }
   
   .navbar-toggle {
-	background-color: #0f4c75;
+	background-color: #5aa6d3;
 	width: 100%;
 	height: 50px;
 	display: flex;

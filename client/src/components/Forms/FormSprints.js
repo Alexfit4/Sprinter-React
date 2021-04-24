@@ -2,7 +2,8 @@ import React, { useState, useEffect, Component } from "react";
 import { Form, Button, Col, Container, h1, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import Select from "react-select";
-
+import DatePicker from 'react-date-picker';
+import Moment from 'moment';
 const SprintsForms = (props) => {
 
 
@@ -22,8 +23,8 @@ const SprintsForms = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
-
-  
+    const [endDate, setendDate] = useState(new Date());
+    const [multiOption, setMultiOption] = useState([]);
 
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
 
@@ -190,14 +191,16 @@ const SprintsForms = (props) => {
             description: description,
             manager: manager,
             employee: newEmployee,
-            startDate: startDate,
+            startDate: Moment(startDate).format("L"),
+            endDate: Moment(endDate).format("L"),
             status: status,
+
             // employeeData: checkArray.toString()
         };
 
         axios.post('http://localhost:5000/projects', project)
             .then(res => props.getSprints())
-
+        window.location.href = "/sprints"
     }
 
 
@@ -224,6 +227,11 @@ const SprintsForms = (props) => {
     //     setEmployee({ selectedOption: e.target.value });
     //       }
 
+
+    const formatDate = (date) => {
+        const newDate = Moment(date).format("l")
+        console.log(newDate)
+    }
 
     return (
         <Container>
@@ -313,6 +321,25 @@ const SprintsForms = (props) => {
                         </Form.Control>
                     </Form.Group>
 
+                    <Form.Group controlId="exampleForm.ControlSelect3">
+                        <Form.Label>Start Date</Form.Label>
+                        <div>
+                            <DatePicker dateFormat="MM-DD-YYYY"
+                                onChange={date => setstartDate(date)}
+                                value={startDate}
+                            />
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group controlId="exampleForm.ControlSelect3">
+                        <Form.Label>End Date</Form.Label>
+                        <div>
+                            <DatePicker dateFormat="MM-DD-YYYY"
+                                onChange={date => setendDate(date)}
+                                value={endDate}
+                            />
+                        </div>
+                    </Form.Group>
 
                     <Button type="submit">Submit form</Button>
                 </Form>
