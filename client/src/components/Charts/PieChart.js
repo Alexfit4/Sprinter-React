@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from "recharts";
+import { PieChart, Pie,  Cell } from "recharts";
 import axios from "axios";
 
 
@@ -34,10 +34,6 @@ const renderCustomizedLabel = ({
 export default function CustomPieChart() {
 	// static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
 
-
-
-
-
 	const [opened, setOpened] = useState();
 
 	const [inProgress, setInProgress] = useState()
@@ -56,7 +52,7 @@ export default function CustomPieChart() {
 				setInProgress(sprints.data.filter((data) => data.status === "in progress").length)
 				setInReview(sprints.data.filter((data) => data.status === "in review").length)
 				setDone(sprints.data.filter((data) => data.status === "done").length)
-				return opened
+				
 
 				
 			})
@@ -76,7 +72,7 @@ export default function CustomPieChart() {
 		{ name: "Done", value: done },
 	];
 
-	const [data, setData] = useState(info)
+	const [data] = useState(info)
 
 	console.log(data);
 

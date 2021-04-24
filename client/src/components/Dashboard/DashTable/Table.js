@@ -7,7 +7,7 @@ export default function DashBoardTable() {
 	const [Results, setResults] = useState([]);
 	useEffect(() => {
 		axios.get("http://localhost:5000/projects").then((data) => {
-			console.log(data.data);
+			
 			setResults(data.data);
 		});
 	}, []);
@@ -26,7 +26,7 @@ export default function DashBoardTable() {
         // after the decimal.
         return '_' + Math.random().toString(36).substr(2, 4);
       };
-      console.log(ID());
+      
 
 	return (
 		<div>

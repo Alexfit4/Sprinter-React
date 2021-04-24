@@ -1,9 +1,7 @@
 import React, { useState, useEffect} from "react";
-import { Form, Button, Col, InputGroup, Row } from "react-bootstrap";
+import { Form, Button, Col } from "react-bootstrap";
 import "../../App.css";
 import axios from "axios";
-import Employee from "../Employees/Employee";
-import { RiContactsBookUploadLine } from "react-icons/ri";
 
 const initialValues = {
 	first: "",
@@ -24,7 +22,7 @@ export default function Forms(props) {
 		  [name]: value,
 		});
 
-		console.log(e.target.value)
+		
 	
 	}
 	const submit=(e) => {
@@ -43,11 +41,11 @@ export default function Forms(props) {
 			roleId:values.id
 		})
 		.then(res=>{
-			console.log(res.data.updatedEmpList)
+			
 			props.setEmployees(res.data.updatedEmpList)
 		})
 		.catch(err=>console.log(err))
-		console.log(values)
+		
 
 	}
 	
@@ -56,13 +54,13 @@ export default function Forms(props) {
 	  useEffect(() => {
 		axios.get("https://sprinter-v2.herokuapp.com/roles")
 		.then((res => {
-			console.log(res.data)
+			
 			setRoles(res.data)
 		})) 
 	  }, [])
 
 	return (
-		<Col className="mx-auto addemp-form" md={4} md="4" className="mx-auto mb-2">
+		<Col className="mx-auto addemp-form mx-auto mb-2" md={4}>
 		<Form className = "empForm" noValidate validated={validated} onSubmit={submit}>
 		<h4 className="empFormTitle">Add Employees</h4>
 			<Form.Group>

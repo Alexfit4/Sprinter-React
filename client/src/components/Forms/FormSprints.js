@@ -1,5 +1,5 @@
-import React, { useState, useEffect, Component } from "react";
-import { Form, Button, Col, Container, h1, InputGroup, Row } from "react-bootstrap";
+import React, { useState, useEffect } from "react";
+import { Form, Button, Col, Container } from "react-bootstrap";
 import axios from "axios";
 import Select from "react-select";
 import DatePicker from 'react-date-picker';
@@ -13,7 +13,6 @@ const SprintsForms = (props) => {
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [endDate, setendDate] = useState(new Date());
-    const [multiOption, setMultiOption] = useState([]);
 
     const [status, setStatus] = useState(['open']);
 
@@ -73,10 +72,6 @@ const SprintsForms = (props) => {
        
     };
 
-    const formatDate = (date) => {
-        const newDate = Moment(date).format("l")
-        console.log(newDate)
-    }
 
     return (
         <Container>
