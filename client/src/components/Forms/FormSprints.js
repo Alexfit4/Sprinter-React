@@ -26,7 +26,7 @@ const SprintsForms = (props) => {
     const [endDate, setendDate] = useState(new Date());
     const [multiOption, setMultiOption] = useState([]);
 
-    const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
+    const [status, setStatus] = useState(['open']);
 
   
     const [newEmployee, setNewEmployee] = useState([])
@@ -309,7 +309,7 @@ const SprintsForms = (props) => {
 
                     <Form.Group controlId="exampleForm.ControlSelect3">
                         <Form.Label>Status</Form.Label>
-                        <Form.Control as="select" custom defaultValue="Open" className="form-control"
+                        <Form.Control as="select" custom defaultValue="select" className="form-control"
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
