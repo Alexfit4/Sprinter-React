@@ -23,7 +23,7 @@ const SprintsForms = (props) => {
     const [startDate, setstartDate] = useState(new Date());
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
-
+    const [endDate, setendDate] = useState(new Date());
     const [multiOption, setMultiOption] = useState([]);
 
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
@@ -191,7 +191,8 @@ const SprintsForms = (props) => {
             description: description,
             manager: manager,
             employee: newEmployee,
-            startDate: Moment(startDate).format("l"),
+            startDate: Moment(startDate).format("L"),
+            endDate: Moment(endDate).format("L"),
             status: status,
 
             // employeeData: checkArray.toString()
@@ -326,6 +327,16 @@ const SprintsForms = (props) => {
                             <DatePicker dateFormat="MM-DD-YYYY"
                                 onChange={date => setstartDate(date)}
                                 value={startDate}
+                            />
+                        </div>
+                    </Form.Group>
+
+                    <Form.Group controlId="exampleForm.ControlSelect3">
+                        <Form.Label>End Date</Form.Label>
+                        <div>
+                            <DatePicker dateFormat="MM-DD-YYYY"
+                                onChange={date => setendDate(date)}
+                                value={endDate}
                             />
                         </div>
                     </Form.Group>
