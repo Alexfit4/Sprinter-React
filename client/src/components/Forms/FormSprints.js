@@ -23,11 +23,11 @@ const SprintsForms = (props) => {
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
 
-    const [multiOption, setMultiOption] = useState([]);
+  
 
     const [status, setStatus] = useState(['open', 'in progress', "in review", "done"]);
 
-    const [employeeData, setEmployeeData] = useState([]);
+  
     const [newEmployee, setNewEmployee] = useState([])
     // const [selectedEmployee, setSelectedEmployee] = useState("none");
 
@@ -218,7 +218,7 @@ const SprintsForms = (props) => {
             setNewEmployee(array);
         })
 
-        console.log(newEmployee, 'here');
+       
     };
 
     //     setEmployee({ selectedOption: e.target.value });
@@ -253,7 +253,7 @@ const SprintsForms = (props) => {
                             onChange={(e) => setManager(e.target.value)}>
                             {employee.map((option) => {
                                 return <option
-                                    // key={option}
+                                    // key={option.id}
                                     value={option}>{option}
                                 </option>;
                             })}

@@ -22,6 +22,14 @@ function Dashboard() {
 
     const [deadline, setDeadline] = useState();
 
+    const [opened, setOpened] = useState();
+
+    const [inProgress, setInProgress] = useState()
+
+    const [inReview, setInReview] = useState()
+
+    const [done, setDone] = useState()
+
     const runAxios = () => {
         axios.get(`http://localhost:5000/projects/${id}`).then(
             sprints => {
@@ -65,6 +73,10 @@ function Dashboard() {
                 sprints => {
                     console.log(sprints.data[0]._id);
                     setResults(sprints.data);
+                    setOpened(sprints.data.filter((data) => data.status === "open").length);
+                    setInProgress(sprints.data.filter((data) => data.status === "in progress").length)
+                    setInReview(sprints.data.filter((data) => data.status === "in review").length)
+                    setDone(sprints.data.filter((data) => data.status === "done").length)
                 }
             ).catch(error => {
                 console.log(error);
@@ -228,22 +240,22 @@ function Dashboard() {
                     <div className="charts__right__cards">
                         <div className="card1">
                             <h1>Open</h1>
-                            <h3>5</h3>
+                            <h3>{opened}</h3>
                         </div>
 
                         <div className="card2">
                             <h1>In progress</h1>
-                            <h3>7</h3>
+                            <h3>{inProgress}</h3>
                         </div>
 
                         <div className="card3">
                             <h1>In review</h1>
-                            <h3>3</h3>
+                            <h3>{inReview}</h3>
                         </div>
 
                         <div className="card4">
                             <h1>Done</h1>
-                            <h3>5</h3>
+                            <h3>{done}</h3>
                         </div>
                     </div>
                 </div>
