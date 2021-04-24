@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
-// import Card from "../Cards/Cards"
 import CustomPieChart from "../Charts/PieChart";
 import "./dashboard.css";
-import { Form, Button, Card, Container, Row, Col } from "react-bootstrap/";
+import { Form,  Card, Container, Row, Col } from "react-bootstrap/";
 import axios from "axios";
 
 function Dashboard() {
-	// Card data state to have title of project, project description, use data to map over and display on the screen.
 
 	const [cardData, setCardData] = useState([]);
-
-	const [sprintTitles, setSprintTitles] = useState([]);
 
 	const [results, setResults] = useState([]);
 
@@ -26,16 +22,7 @@ function Dashboard() {
 
 	const [done, setDone] = useState();
 
-	const runAxios = () => {
-		axios
-			.get(`https://sprinter-v2.herokuapp.com/projects/${id}`)
-			.then((sprints) => {
-				console.log(sprints);
-			})
-			.catch((error) => {
-				console.log(error);
-			});
-	};
+
 
 	const calculateDeadline = () => {
 		axios.get(`https://sprinter-v2.herokuapp.com/projects/${id}`).then((sprints) => {
@@ -87,8 +74,8 @@ function Dashboard() {
 
 	const handleChange = (e) => {
 		e.preventDefault();
-		const { name, value } = e.target;
-		console.log(e.target.value);
+		
+		
 		setId(e.target.value);
 	};
 
@@ -97,8 +84,6 @@ function Dashboard() {
 		axios
 			.get(`https://sprinter-v2.herokuapp.com/projects/${id}`)
 			.then((sprints) => {
-				console.log(typeof sprints.data, "here");
-				console.log(sprints.data.description);
 				let array = [];
 				array.push(sprints.data);
 				setCardData(array);
@@ -199,34 +184,6 @@ function Dashboard() {
 							: null}
 					</Col>
 
-					{/* <Col size="2">
-                <div>
-            <Card>
-                <Card.Body>
-                    <Card.Title>Project: {cardData.title}</Card.Title>
-                    <Card.Text>
-                    {cardData.description}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card>
-                <Card.Body>
-                    <Card.Title>Employees</Card.Title>
-                    <Card.Text>
-                    {cardData.employee}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-            <Card>
-                <Card.Body>
-                    <Card.Title>Managers</Card.Title>
-                    <Card.Text>
-                    {cardData.manager}
-                    </Card.Text>
-                </Card.Body>
-            </Card>
-               </div>
-            </Col> */}
 				</Row>
 
 				<br />

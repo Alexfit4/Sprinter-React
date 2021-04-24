@@ -59,7 +59,7 @@ const Item = ({ item, index, moveItem, status, }) => {
     drag(drop(ref));
 
     function deleteProject(projectId) {
-        return axios.delete(`http://localhost:5000/projects/${projectId}`)
+        return axios.delete(`https://sprinter-v2.herokuapp.com/projects/${projectId}`)
     }
 
     async function handleClick(e) {
@@ -96,11 +96,6 @@ const Item = ({ item, index, moveItem, status, }) => {
                 <p className={"item-status"}>{item.icon}</p>
 
             </div>
-            {/* <Window
-                item={item}
-                onClose={onClose}
-                show={show}
-            /> */}
         </Fragment >
     );
 };

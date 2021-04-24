@@ -1,7 +1,6 @@
 import React from 'react';
 import { Card } from 'react-bootstrap';
 
-// const title = ["Summary", "Managers", "Employees", "Timeline"]
 
 export default (props) => {
     return (
