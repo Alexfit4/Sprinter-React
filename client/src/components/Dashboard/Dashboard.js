@@ -95,8 +95,7 @@ function Dashboard() {
 	};
 
 	return (
-		<Container>
-			<div className="dashboard pl-5">
+		<Container className="dashboard pl-5">
 				<div className="main__title">
 					<div className="main__greeting mx-auto">
 						<br />
@@ -105,10 +104,10 @@ function Dashboard() {
 				</div>
 				<Row>
 					<Col sm={12} md={2}>
-						<Form id={id}>
-							<Form.Group className="selectProject">
+						<Form className="displayProjects" id={id}>
+							<Form.Group>
 								<Form.Label>Your Projects</Form.Label>
-								<Form.Control
+								<Form.Control className="selectProject"
 									custom
 									as="select"
 									multiple
@@ -187,7 +186,7 @@ function Dashboard() {
 				</Row>
 
 				<br />
-				<Row className="charts">
+			<Row className="charts"> 
 					<Col sm={12} md={6} className="charts__left">
 						<div className="charts__left__title">
 							<div>
@@ -197,13 +196,12 @@ function Dashboard() {
 						<CustomPieChart />
 					</Col>
 
-					<Col sm={12} md={6} className="charts__right">
+					<Col  className="charts__right">
 						<div className="charts__right__title">
 							<div>
 								<h1>Status Reports</h1>
 							</div>
 						</div>
-
 						<div className="charts__right__cards">
 							<div className="card1">
 								<h1>Open</h1>
@@ -226,8 +224,8 @@ function Dashboard() {
 							</div>
 						</div>
 					</Col>
-				</Row>
-			</div>
+			</Row>
+		
 		</Container>
 	);
 }
