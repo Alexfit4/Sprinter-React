@@ -1,8 +1,6 @@
 import express from "express";
 import mongoose from 'mongoose';
 import cors from "cors";
-// comment
-
 
 const app = express();
 import EmployeeRoutes from '../server/routes/employee.js'
