@@ -84,7 +84,7 @@ export default function CustomPieChart() {
 
 
 	return (
-		<ResponsiveContainer width="100%" height="100%">
+		
 			<PieChart width={400} height={400}>
 				<Pie
 					data={data}
@@ -101,6 +101,6 @@ export default function CustomPieChart() {
 					))}
 				</Pie>
 			</PieChart>
-		</ResponsiveContainer>
+		
 	);
 }
