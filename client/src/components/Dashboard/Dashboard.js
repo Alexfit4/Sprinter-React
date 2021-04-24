@@ -240,7 +240,7 @@ function Dashboard() {
 						<CustomPieChart />
 					</Col>
 
-					<Col className="charts__right">
+					<Col sm={12} md={6} className="charts__right">
 						<div className="charts__right__title">
 							<div>
 								<h1>Status Reports</h1>
