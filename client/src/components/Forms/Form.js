@@ -37,7 +37,7 @@ export default function Forms(props) {
 	
 		setValidated(true);
 
-		axios.post("http://localhost:5000/employee",{
+		axios.post("https://sprinter-v2.herokuapp.com/employee",{
 			first_name:values.first,
 			last_name:values.last,
 			roleId:values.id
@@ -54,7 +54,7 @@ export default function Forms(props) {
 	const [roles, setRoles] = useState([]);
 	
 	  useEffect(() => {
-		axios.get("http://localhost:5000/roles")
+		axios.get("https://sprinter-v2.herokuapp.com/roles")
 		.then((res => {
 			console.log(res.data)
 			setRoles(res.data)
