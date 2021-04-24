@@ -6,18 +6,6 @@ import DatePicker from 'react-date-picker';
 import Moment from 'moment';
 const SprintsForms = (props) => {
 
-
-
-    // export default class SprintsForms extends Component {
-
-    // this.onChangeTitle = this.onChangeTitle.bind(this);
-    // this.onChangeDescription = this.onChangeDescription.bind(this);
-    // this.onChangeStartDate = this.onChangeStartDate.bind(this);
-    // this.onChangeManager = this.onChangeManager.bind(this);
-    // this.onChangeEmployee = this.onChangeEmployee.bind(this);
-    // this.onChangeStatus = this.onChangeStatus.bind(this);
-    // this.onSubmit = this.onSubmit.bind(this);
-
     const [title, setTitle] = useState("");
     const [description, setDescription] = useState("");
     const [startDate, setstartDate] = useState(new Date());
@@ -30,78 +18,9 @@ const SprintsForms = (props) => {
 
   
     const [newEmployee, setNewEmployee] = useState([])
-    // const [selectedEmployee, setSelectedEmployee] = useState("none");
-
-    // const handleTypeSelect = e => {
-    //     setSelectedEmployee(e.value);
-    // };
-
-
-    // const status = ['open', 'in progress', "in review", "done"]
-
-
-
-    // const employeeList = () => {
-    //     axios.get('http://localhost:5000/employee')
-    //         .then(response => {
-    //             if (response.data.length > 0) {
-    //                 this.setState({
-    //                     employee: response.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`),
-
-
-    //                 })
-    //             }
-    //         })
-    //         .catch((error) => {
-    //             console.log(error);
-    //         })
-    // }
-
-
-    // getEmployees() {
-
-    //     axios.get("http://localhost:5000/employee")
-    //         .then(employee => {
-    //             console.log(employee)
-
-    //             const results = employee.data.map(employee => {
-    //                 return {
-    //                     employee: employee.first_name,
-
-    //                 }
-    //             })
-
-
-    //         }).catch(error => {
-    //             console.log(error)
-    //         })
-
-    // }
-
-
-
-    // const managerList = () => {
-    //     axios.get('http://localhost:5000/employee')
-    //         .then(response => {
-    //             let details = [];
-
-    //             for (var i in response.data) {
-    //                 details.push({ name: i, value: response.data[i] })
-    //             }
-
-    //             this.setState({ employee: details })
-
-    //         })
-    // }
-
-    // const optionTest = [
-    //     { value: 'chocolate', label: 'Chocolate' },
-    //     { value: 'strawberry', label: 'Strawberry' },
-    //     { value: 'vanilla', label: 'Vanilla' }
-    // ]
-
+    
     useEffect(() => {
-        axios.get('http://localhost:5000/employee')
+        axios.get('https://sprinter-v2.herokuapp.com/employee')
             .then(res => {
 
                 setEmployee(res.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`)
@@ -114,77 +33,8 @@ const SprintsForms = (props) => {
 
     }, [])
 
-
-
-    // onChangeTitle = (e) => {
-    //     this.setState({
-    //         title: e.target.value
-    //     })
-    // }
-
-    // onChangeDescription = (e) => {
-    //     this.setState({
-    //         description: e.target.value
-    //     })
-    // }
-
-    // onChangeStartDate = (date) => {
-    //     this.setState({
-    //         startDate: date
-    //     })
-    // }
-
-    // onChangeManager = (e) => {
-    //     this.setState({
-    //         manager: e.target.value
-    //     })
-    // }
-
-    // onChangeEmployee = (e) => {
-    //     this.setState({
-    //         employee: e.target.value
-    //     })
-    // }
-
-    // onChangeStatus = (e) => {
-    //     this.setState({
-    //         status: e.target.value
-    //     })
-    // }
-
-
-
-    //DO NOT DELETE !!!
-    // onSubmit(e) {
-    //     e.preventDefault();
-
-    //     const project = {
-    //         title: this.state.title,
-    //         description: this.state.description,
-    //         manager: this.state.manager,
-    //         employee: this.state.employeeData,
-    //         startDate: this.state.startDate,
-    //         status: this.state.status
-    //     }
-    //     console.log(project);
-
-    //     axios.post('http://localhost:5000/projects', project)
-    //         .then(res => this.props.getSprints());
-
-    //     window.location = '/sprints';
-    // }
-
-
-
     const onSubmit = (e) => {
         e.preventDefault();
-
-        // let checkArray = [];
-        // for (var key in this.state.employeeData) {
-        //     if (this.state.employeeData[key] === true) {
-        //         checkArray.push(key);
-        //     }
-        // }
 
         let project = {
             title: title,
@@ -195,12 +45,11 @@ const SprintsForms = (props) => {
             endDate: Moment(endDate).format("L"),
             status: status,
 
-            // employeeData: checkArray.toString()
         };
 
-        axios.post('http://localhost:5000/projects', project)
+        axios.post('https://sprinter-v2.herokuapp.com/projects', project)
             .then(res => props.getSprints())
-        window.location.href = "/sprints"
+        // window.location.href = "/sprints"
     }
 
 
@@ -215,7 +64,6 @@ const SprintsForms = (props) => {
     const handleChange = selectedOption => {
         let array = [];
         selectedOption.map((data) => {
-            // let obj = { value: data.value, label: data.label }
 
             array.push(data.value);
             setNewEmployee(array);
@@ -223,10 +71,6 @@ const SprintsForms = (props) => {
 
        
     };
-
-    //     setEmployee({ selectedOption: e.target.value });
-    //       }
-
 
     const formatDate = (date) => {
         const newDate = Moment(date).format("l")
@@ -261,44 +105,12 @@ const SprintsForms = (props) => {
                             onChange={(e) => setManager(e.target.value)}>
                             {employee.map((option) => {
                                 return <option
-                                    // key={option.id}
                                     value={option}>{option}
                                 </option>;
                             })}
                         </Form.Control>
 
-                        {/* <Select
-                            options={employee}
-                            onChange={(e) => {
-                                setEmployeeData(e.target.value)
-                                console.log(e.target.value)
-                            }}
-                            value={employee.filter(function (option) {
-                                return option.value === selectedEmployee;
-                            })}
-                            label="Single select"
-                        /> */}
-
-
                     </Form.Group>
-
-
-
-                    {/* //DO NOT DELETE !!! */}
-                    {/* <Form.Group controlId="exampleForm.ControlSelect2">
-                            <Form.Label>Employee</Form.Label>
-                            <Form.Control as="select" multiple className="form-control"
-                                value={this.state.employee} onChange={(e) => {
-                                    this.setState({ employeeData: e.target.value })
-                                    console.log(e.target.value)
-                                }}>
-                                {this.state.employee.map(function (employee) {
-                                    return <option
-                                        key={employee}
-                                        value={employee}>{employee}
-                                    </option>;selectedOption
-                                })}
-                            </Form.Control> */}
 
 
                     <Form>Employee</Form>
