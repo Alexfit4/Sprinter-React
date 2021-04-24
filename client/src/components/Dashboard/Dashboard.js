@@ -109,9 +109,9 @@ function Dashboard() {
                 <Row>
                     <Col sm={12} md={2}>
                         <Form id={id}>
-                            <Form.Group>
+                            <Form.Group className="selectProject">
                                 <Form.Label>Your Projects</Form.Label>
-                                <Form.Control size="md" as="select" multiple name="id" onChange={handleChange} onClick={handleClick}  >
+                                <Form.Control custom as="select" multiple name="id" onChange={handleChange} onClick={handleClick}  >
                                     {results.map(sprints => {
                                         return <option value={sprints._id} key={sprints._id}>{sprints.title} </option>
                                     })}

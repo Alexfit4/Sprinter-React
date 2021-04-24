@@ -8,14 +8,13 @@
 .charts {
   /* display: grid; */
   /* grid-template-columns: 1fr 1fr; */
-  /* gap: 30px; */
+  gap: 25px;
   margin-top: 50px;
   margin-bottom: 50px;
 }
 
 .charts__left {
   padding:25px;
-  margin-right:5px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
@@ -52,7 +51,6 @@
 }
 
 .charts__right {
-  margin-left:5px;
   padding:25px;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
@@ -165,4 +163,8 @@
 .dashboard-card-title{
   color:#2e4a66;
   font-weight:bold !important;
+}
+
+.custom-select{
+  height:10em !important;
 }
