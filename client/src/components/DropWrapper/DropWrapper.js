@@ -4,6 +4,8 @@ import ITEM_TYPE from "../../data/types";
 import { statuses } from "../../data/index";
 
 const DropWrapper = ({ onDrop, children, status }) => {
+    
+  
     const [{ isOver }, drop] = useDrop({
         accept: ITEM_TYPE,
         canDrop: (item, monitor) => {
@@ -19,7 +21,13 @@ const DropWrapper = ({ onDrop, children, status }) => {
         })
     });
 
+    const clicked = () => {
+        console.log('clicked')
+    }
+
+    
     return (
+        
         <div ref={drop} className={"drop-wrapper"}>
             {React.cloneElement(children, { isOver })}
         </div>

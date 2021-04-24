@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useRef } from "react";
+import React, { Fragment, useState, useRef, useEffect } from "react";
 import { useDrag, useDrop } from "react-dnd";
 // import Window from "../Window/Window";
 import ITEM_TYPE from "../../data/types";
