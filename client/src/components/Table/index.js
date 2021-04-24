@@ -8,7 +8,7 @@ import "../../App.css"
 function TableComponents(props) {
 
   function getEmployees() {
-    return axios.get("http://localhost:5000/employee")
+    return axios.get("https://sprinter-v2.herokuapp.com/employee")
   }
 
   useEffect(() => {
