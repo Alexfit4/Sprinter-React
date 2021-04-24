@@ -21,6 +21,14 @@ const Sprints = () => {
                 .concat({ ...item, status, icon: mapping.icon });
             return [...newItems];
         });
+        console.log("this is", status)
+        console.log("this is item", item)
+        axios.put(`http://localhost:5000/projects/${item.id}`, {
+            title: item.title,
+            description: item.content,
+            status: status
+        }).then(data => { console.log(data) })
+            .catch(err => { console.log(err) })
     };
 
     const moveItem = (dragIndex, hoverIndex) => {
@@ -39,12 +47,26 @@ const Sprints = () => {
                 console.log(sprints.data)
 
                 const results = sprints.data.map(sprint => {
+                    let description;
+                    let status;
+                    if (!sprint.description) {
+                        description = ""
+                    } else {
+                        description = sprint.description[0]
+                    }
+
+                    if (!sprint.status) {
+                        status = "open"
+                    } else {
+                        status = sprint.status
+                    }
+
                     return {
                         id: sprint._id,
                         // icon: "⭕️",
-                        status: sprint.status,
+                        status: status,
                         title: sprint.title,
-                        content: sprint.description[0]
+                        content: description,
                     }
                 })
                 console.log(results)
@@ -62,10 +84,7 @@ const Sprints = () => {
     useEffect(getSprints, [])
 
 
-    const moveCards = () => {
-        axios.put("http://localhost:5000/projects/:id")
 
-    }
 
     return (
 
