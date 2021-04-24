@@ -200,7 +200,7 @@ const SprintsForms = (props) => {
 
         axios.post('http://localhost:5000/projects', project)
             .then(res => props.getSprints())
-
+        window.location.href = "/sprints"
     }
 
 

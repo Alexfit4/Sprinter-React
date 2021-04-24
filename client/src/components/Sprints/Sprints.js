@@ -84,10 +84,7 @@ const Sprints = () => {
     useEffect(getSprints, [])
 
 
-    const moveCards = () => {
-        axios.put("http://localhost:5000/projects/:id")
 
-    }
 
     return (
 

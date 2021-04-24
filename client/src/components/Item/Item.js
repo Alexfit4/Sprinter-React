@@ -2,7 +2,8 @@ import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
 // import Window from "../Window/Window";
 import ITEM_TYPE from "../../data/types";
-
+import { RiDeleteBinLine } from "react-icons/ri"
+import axios from "axios";
 const Item = ({ item, index, moveItem, status, }) => {
     const ref = useRef(null);
 
@@ -34,7 +35,7 @@ const Item = ({ item, index, moveItem, status, }) => {
             moveItem(dragIndex, hoverIndex);
             item.index = hoverIndex;
 
-            console.log("this is", moveItem)
+
         },
     });
 
@@ -46,7 +47,8 @@ const Item = ({ item, index, moveItem, status, }) => {
         })
 
 
-    });
+    },
+        console.log("this is", item));
 
     const [show, setShow] = useState(false);
 
@@ -56,6 +58,25 @@ const Item = ({ item, index, moveItem, status, }) => {
 
     drag(drop(ref));
 
+    function deleteProject(projectId) {
+        return axios.delete(`http://localhost:5000/projects/${projectId}`)
+    }
+
+    async function handleClick(e) {
+        var projectId = item.id
+        console.log(projectId)
+        const response = await deleteProject(projectId)
+        console.log(response)
+        window.location.href = "/sprints"
+        // props.setEmployees(response.data.updatedEmpList)
+    }
+
+    const styleDelete = {
+        position: "relative",
+        top: "-10",
+        left: "150",
+    };
+
     return (
         <Fragment>
             <div
@@ -64,17 +85,22 @@ const Item = ({ item, index, moveItem, status, }) => {
                 className={"item"}
                 onClick={onOpen}
             >
+                <RiDeleteBinLine className="delete-icon" value={item.id} onClick={handleClick} style={styleDelete} />
                 <div className={"color-bar"} style={{ backgroundColor: status.color }} />
-                <p className={"item-title"}>{item.title}</p>
+
+                <p className={"item-title"}>{item.title}
+
+                </p>
                 <p className={"item-content"}>{item.content}</p>
                 <p className={"item-status"}>{item.icon}</p>
+
             </div>
             {/* <Window
                 item={item}
                 onClose={onClose}
                 show={show}
             /> */}
-        </Fragment>
+        </Fragment >
     );
 };
 
