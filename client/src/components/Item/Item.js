@@ -67,7 +67,7 @@ const Item = ({ item, index, moveItem, status, }) => {
         console.log(projectId)
         const response = await deleteProject(projectId)
         console.log(response)
-        window.location.href = "/sprints"
+        // window.location.href = "/sprints"
         // props.setEmployees(response.data.updatedEmpList)
     }
 
