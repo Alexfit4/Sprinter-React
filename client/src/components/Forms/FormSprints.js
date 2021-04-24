@@ -4,6 +4,7 @@ import axios from "axios";
 import Select from "react-select";
 import DatePicker from 'react-date-picker';
 import Moment from 'moment';
+import "../../App.css"
 const SprintsForms = (props) => {
 
 
@@ -236,9 +237,8 @@ const SprintsForms = (props) => {
     return (
         <Container>
             <Col md="4" className="mx-auto">
-                <h1>Sprint Form</h1>
-                <Form onSubmit={onSubmit}  >
-
+                <Form onSubmit={onSubmit} className = "sprintForm" >
+                <h4 className="sprintTitle">Sprint Form</h4>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Sprints Name</Form.Label>
                         <Form.Control type="sprints" placeholder="Sprints Name" className="form-control"
@@ -341,7 +341,7 @@ const SprintsForms = (props) => {
                         </div>
                     </Form.Group>
 
-                    <Button type="submit">Submit form</Button>
+                    <Button className="sprintBtn" type="submit">Add Sprint</Button>
                 </Form>
             </Col>
         </Container >
