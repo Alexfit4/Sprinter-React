@@ -75,8 +75,9 @@ export const deleteProjects = async (req, res) => {
 	const id = req.params.id;
 	try {
 		await ProjectSchema.findByIdAndDelete(id);
-
-		return res.json({ message: "Successful deletion!" })
+		const updatedSprintList =  await ProjectSchema.find()
+        console.log("This is an updated Sprint List ", updatedSprintList);
+		return res.json({ message: "Successful deletion!", updatedSprintList})
 
 	} catch (err) {
 		console.log(err);

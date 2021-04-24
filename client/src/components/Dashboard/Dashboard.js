@@ -28,7 +28,7 @@ function Dashboard() {
 
 	const runAxios = () => {
 		axios
-			.get(`http://localhost:5000/projects/${id}`)
+			.get(`https://sprinter-v2.herokuapp.com/projects/${id}`)
 			.then((sprints) => {
 				console.log(sprints);
 			})
@@ -38,7 +38,7 @@ function Dashboard() {
 	};
 
 	const calculateDeadline = () => {
-		axios.get(`http://localhost:5000/projects/${id}`).then((sprints) => {
+		axios.get(`https://sprinter-v2.herokuapp.com/projects/${id}`).then((sprints) => {
 			console.log(sprints.data.startDate);
 			var date1 = new Date(sprints.data.startDate);
 			var date2 = new Date(sprints.data.endDate);
@@ -67,7 +67,7 @@ function Dashboard() {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/projects/")
+			.get("https://sprinter-v2.herokuapp.com/projects/")
 			.then((sprints) => {
 				console.log(sprints.data[0]._id);
 				setResults(sprints.data);
@@ -95,7 +95,7 @@ function Dashboard() {
 	const handleClick = (e) => {
 		e.preventDefault();
 		axios
-			.get(`http://localhost:5000/projects/${id}`)
+			.get(`https://sprinter-v2.herokuapp.com/projects/${id}`)
 			.then((sprints) => {
 				console.log(typeof sprints.data, "here");
 				console.log(sprints.data.description);

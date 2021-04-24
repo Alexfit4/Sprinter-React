@@ -22,7 +22,7 @@ const Sprints = () => {
 		console.log("this is", status);
 		console.log("this is item", item);
 		axios
-			.put(`http://localhost:5000/projects/${item.id}`, {
+			.put(`https://sprinter-v2.herokuapp.com/projects/${item.id}`, {
 				title: item.title,
 				description: item.content,
 				status: status,
@@ -46,7 +46,7 @@ const Sprints = () => {
 
 	const getSprints = () => {
 		axios
-			.get("http://localhost:5000/projects")
+			.get("https://sprinter-v2.herokuapp.com/projects")
 			.then((sprints) => {
 				console.log(sprints.data);
 
