@@ -36,71 +36,71 @@ const renderCustomizedLabel = ({
 export default function CustomPieChart() {
 	// static demoUrl = 'https://codesandbox.io/s/pie-chart-with-customized-label-dlhhj';
 
-  
 
-    
+
+
 
 	const [opened, setOpened] = useState();
 
-    const [inProgress, setInProgress] = useState()
+	const [inProgress, setInProgress] = useState()
 
-    const [inReview, setInReview] = useState()
+	const [inReview, setInReview] = useState()
 
-    const [done, setDone] = useState()
+	const [done, setDone] = useState()
 
-   
-	useEffect(() => {        
+
+	useEffect(() => {
 		axios
 			.get("http://localhost:5000/projects/")
 			.then((sprints) => {
 				// console.log(sprints.data.filter((data) => data.status === "open").length);
 				setOpened(sprints.data.filter((data) => data.status === "open").length);
-                setInProgress(sprints.data.filter((data) => data.status === "in progress").length)
-                setInReview(sprints.data.filter((data) => data.status === "in review").length)
-                setDone(sprints.data.filter((data) => data.status === "done").length)
-                return opened
+				setInProgress(sprints.data.filter((data) => data.status === "in progress").length)
+				setInReview(sprints.data.filter((data) => data.status === "in review").length)
+				setDone(sprints.data.filter((data) => data.status === "done").length)
+				return opened
 
-                 console.log(opened);
+				console.log(opened);
 			})
 			.catch((error) => {
 				console.log(error);
 			});
 	}, []);
 
-    
 
-    
 
-    let info = [
-        { name: "Open", value: opened },
-        { name: "In Progress", value: {inProgress} },
-        { name: "In Review", value: 3 },
-        { name: "Done", value: 2 },
-    ];
 
-    const [data, setData] = useState(info)
 
-    console.log(data);
+	let info = [
+		{ name: "Open", value: opened },
+		{ name: "In Progress", value: inProgress },
+		{ name: "In Review", value: inReview },
+		{ name: "Done", value: done },
+	];
+
+	const [data, setData] = useState(info)
+
+	console.log(data);
 
 
 	return (
-		
-			<PieChart width={400} height={400}>
-				<Pie
-					data={data}
-					cx="50%"
-					cy="50%"
-					labelLine={false}
-					label={renderCustomizedLabel}
-					outerRadius={80}
-					fill="#8884d8"
-					dataKey="value"
-				>
-					{data.map((entry, index) => (
-						<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
-					))}
-				</Pie>
-			</PieChart>
-		
+
+		<PieChart width={400} height={400}>
+			<Pie
+				data={info}
+				cx="50%"
+				cy="50%"
+				labelLine={false}
+				label={renderCustomizedLabel}
+				outerRadius={80}
+				fill="#8884d8"
+				dataKey="value"
+			>
+				{info.map((entry, index) => (
+					<Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+				))}
+			</Pie>
+		</PieChart>
+
 	);
 }
