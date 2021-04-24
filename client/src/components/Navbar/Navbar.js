@@ -19,6 +19,7 @@ function Navbar() {
 				<Link to={window.location.pathname} className="menu-bars">
 					<FaIcons.FaBars onClick={showSidebar} />
 				</Link>
+                <div className="title">Sprinter</div>
 			</div>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <ul className="nav-menu-items" onClick={showSidebar}>
