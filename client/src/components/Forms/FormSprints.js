@@ -17,14 +17,14 @@ const SprintsForms = (props) => {
     const [multiOption, setMultiOption] = useState([]);
     const [status, setStatus] = useState([]);
     const [newEmployee, setNewEmployee] = useState([])
-
+    const [noemployee, setNoEmployee] = useState([]);
 
 
     useEffect(() => {
         axios.get('https://sprinter-v2.herokuapp.com/employee')
             .then(res => {
 
-                setEmployee(
+                setNoEmployee(
                     res.data
                         .filter((i) => !i.role.title.includes(("Lead"))
                         )
@@ -42,7 +42,7 @@ const SprintsForms = (props) => {
         axios.get('https://sprinter-v2.herokuapp.com/employee')
             .then(res => {
 
-                setManager(
+                setEmployee(
                     res.data
                         .filter((i) => i.role.title.includes(("Lead"))
                         )
@@ -77,7 +77,7 @@ const SprintsForms = (props) => {
     }
 
 
-    const employeeOption = employee.map((allOptions) => {
+    const employeeOption = noemployee.map((allOptions) => {
 
         return {
             value: allOptions,
@@ -126,7 +126,7 @@ const SprintsForms = (props) => {
                         <Form.Control as="select" custom className="form-control"
                             value={manager}
                             onChange={(e) => setManager(e.target.value)}>
-                            {manager.map((option) => {
+                            {employee.map((option) => {
                                 return <option
                                     value={option}>{option}
                                 </option>;
