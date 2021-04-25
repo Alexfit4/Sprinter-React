@@ -4,9 +4,11 @@ import { useDrag, useDrop } from "react-dnd";
 import ITEM_TYPE from "../../data/types";
 import { RiDeleteBinLine } from "react-icons/ri"
 import axios from "axios";
-const Item = ({ item, index, moveItem, status, }) => {
-    const ref = useRef(null);
 
+
+const Item = ({ item, index, moveItem, status, props }) => {
+    const ref = useRef(null);
+    const [items, setItems] = useState(item);
     const [, drop] = useDrop({
         accept: ITEM_TYPE,
         hover(item, monitor) {
@@ -63,18 +65,22 @@ const Item = ({ item, index, moveItem, status, }) => {
     }
 
     async function handleClick(e) {
+
         var projectId = item.id
         console.log(projectId)
         const response = await deleteProject(projectId)
         console.log(response)
         // window.location.href = "/sprints"
-        // props.setEmployees(response.data.updatedEmpList)
+        // props.setProjectList(response.data.updatedSprintList)
     }
+
+
+
 
     const styleDelete = {
         position: "relative",
         top: "-10",
-        left: "150",
+        left: "140",
     };
 
     return (
