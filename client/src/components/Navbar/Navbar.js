@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import {SidebarData} from './SidebarData';
 import './Navbar.css';
 import {IconContext} from 'react-icons';
+import * as GiIcons from 'react-icons/gi'
 
 function Navbar() {
     // Setting sidebar state to be false, when false it minimizes, if true it expands. 
@@ -15,13 +16,18 @@ function Navbar() {
 
 	return (
 		<div>
-            <IconContext.Provider value={{color: '#131b23'}}>
+            <IconContext.Provider value={{ color: 'white'}}>
 			<div className="navbar">
 				<Link to={window.location.pathname} className="menu-bars">
 					<FaIcons.FaBars onClick={showSidebar} />
 				</Link>
-                <div className="title">Sprinter</div>
+                <IconContext.Provider value={{ color: 'white', size: "50px"}}>
+                <GiIcons.GiSprint className="nav-icon" />
+                <span className="nav-title">Sprinter</span>
+                </IconContext.Provider>
 			</div>
+            </IconContext.Provider>
+            <IconContext.Provider value={{color: 'white'}}>
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
                 <ul className="nav-menu-items" onClick={showSidebar}>
                     <li className="navbar-toggle">

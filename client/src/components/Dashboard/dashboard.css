@@ -154,24 +154,40 @@
 
 .dashboard-card
 {
-  height:14em;
+  height:12em;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
+  margin:5px;
 }
 
 .dashboard-card-title{
   color:#2e4a66;
   font-weight:bold !important;
+  font-size:18px !important;
 }
 
 .selectProject {
-  height:12em !important;
+  height:22em  !important;
+}
+
+.select-project-title{
+  color:#2e4a66;
+  font-weight:bold !important;
+  font-size:18px !important;
+  padding:5px 15px;
 }
 
 .displayProjects {
-  height:14em;
+  height:24em;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   border-radius: 5px;
+  margin-bottom:20px !important;
+}
+
+.select-project-title{
+  color:#2e4a66;
+  font-weight:bold !important;
+  font-size:18px !important;
 }
