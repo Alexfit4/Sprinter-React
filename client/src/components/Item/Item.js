@@ -6,9 +6,9 @@ import { RiDeleteBinLine } from "react-icons/ri"
 import axios from "axios";
 
 
-const Item = ({ item, index, moveItem, status, props }) => {
+const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
     const ref = useRef(null);
-    const [items, setItems] = useState(item);
+    // const [items, setItems] = useState(item);
     const [, drop] = useDrop({
         accept: ITEM_TYPE,
         hover(item, monitor) {
@@ -68,8 +68,16 @@ const Item = ({ item, index, moveItem, status, props }) => {
 
         var projectId = item.id
         console.log(projectId)
-        const response = await deleteProject(projectId)
+        const response = deleteProject(projectId)
         console.log(response)
+        console.log(items)
+
+        const filteredItem = items.filter(item => {
+            return item.id != projectId
+        })
+
+        console.log(filteredItem)
+        setItems(filteredItem)
         // window.location.href = "/sprints"
         // props.setProjectList(response.data.updatedSprintList)
     }

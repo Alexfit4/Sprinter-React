@@ -15,7 +15,7 @@ const SprintsForms = (props) => {
     const [employee, setEmployee] = useState([]);
     const [endDate, setendDate] = useState(new Date());
     const [multiOption, setMultiOption] = useState([]);
-    const [status, setStatus] = useState([]);
+    const [status, setStatus] = useState("open");
     const [newEmployee, setNewEmployee] = useState([])
     const [noemployee, setNoEmployee] = useState([]);
     const [validated, setValidated] = useState(false);
@@ -55,6 +55,15 @@ const SprintsForms = (props) => {
             })
 
     }, [])
+
+    useEffect(() => {
+        if (employee) {
+            console.log(employee)
+            setManager(employee[0])
+        }
+    },
+        [employee])
+
 
 
     const onSubmit = (e) => {
@@ -159,7 +168,7 @@ const SprintsForms = (props) => {
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
-                            <option></option>
+
                             <option>open</option>
                             <option>in progress</option>
                             <option>in review</option>

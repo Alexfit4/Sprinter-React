@@ -101,6 +101,8 @@ const Sprints = (props) => {
                                             .filter((i) => i.status === s.status)
                                             .map((i, idx) => (
                                                 <Item setProjectList={setProjectList}
+                                                    items={items}
+                                                    setItems={setItems}
                                                     key={i.id}
                                                     item={i}
                                                     index={idx}
