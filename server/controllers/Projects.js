@@ -75,9 +75,9 @@ export const deleteProjects = async (req, res) => {
 	const id = req.params.id;
 	try {
 		await ProjectSchema.findByIdAndDelete(id);
-		const updatedSprintList =  await ProjectSchema.find()
-        console.log("This is an updated Sprint List ", updatedSprintList);
-		return res.json({ message: "Successful deletion!", updatedSprintList})
+		const updatedSprintList = await ProjectSchema.find()
+		console.log("This is an updated Sprint List ", updatedSprintList);
+		return res.json({ message: "Successful deletion!", updatedSprintList })
 
 	} catch (err) {
 		console.log(err);
@@ -85,21 +85,3 @@ export const deleteProjects = async (req, res) => {
 	}
 };
 
-
-export function moveCardsBetweenSections(req, res) {
-
-	const { targetSectionId, cardId, sourceSectionId } = req.body;
-
-	ProjectSchema.findOne({ id: cardId }).exec((err, movedCard) => {
-		Section.findOne({ id: sourceSectionId }).exec((err, sourceSection) => {
-			sourceSection.cards.pull(movedCard);
-			sourceSection.save();
-		})
-			.then(Section.findOne({ id: targetSectionId }).exec((err, targetSection) => {
-				targetSection.cards.push(movedCard);
-				targetSection.save();
-			}))
-			.then(res.status(200).end());
-	});
-
-}

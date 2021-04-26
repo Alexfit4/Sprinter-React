@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
-import { Form, Button, Col, Container } from "react-bootstrap";
+import React, { useState, useEffect, Component } from "react";
+import Item from "../Item/Item";
+import { Form, Button, Col, Container, h1, InputGroup, Row } from "react-bootstrap";
 import axios from "axios";
 import Select from "react-select";
 import DatePicker from 'react-date-picker';
@@ -13,17 +14,21 @@ const SprintsForms = (props) => {
     const [manager, setManager] = useState([]);
     const [employee, setEmployee] = useState([]);
     const [endDate, setendDate] = useState(new Date());
-
-    const [status, setStatus] = useState(['open']);
-
-  
+    const [multiOption, setMultiOption] = useState([]);
+    const [status, setStatus] = useState([]);
     const [newEmployee, setNewEmployee] = useState([])
-    
+    const [noemployee, setNoEmployee] = useState([]);
+    const [validated, setValidated] = useState(false);
+
     useEffect(() => {
         axios.get('https://sprinter-v2.herokuapp.com/employee')
             .then(res => {
 
-                setEmployee(res.data.map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`)
+                setNoEmployee(
+                    res.data
+                        .filter((i) => !i.role.title.includes(("Lead"))
+                        )
+                        .map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`)
                 )
 
             })
@@ -33,9 +38,34 @@ const SprintsForms = (props) => {
 
     }, [])
 
+    useEffect(() => {
+        axios.get('https://sprinter-v2.herokuapp.com/employee')
+            .then(res => {
+
+                setEmployee(
+                    res.data
+                        .filter((i) => i.role.title.includes(("Lead"))
+                        )
+                        .map(EmployeeSchema => `${EmployeeSchema.first_name} ${EmployeeSchema.last_name}`)
+                )
+
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
+    }, [])
+
+
     const onSubmit = (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
 
+        setValidated(true);
         let project = {
             title: title,
             description: description,
@@ -53,7 +83,7 @@ const SprintsForms = (props) => {
     }
 
 
-    const employeeOption = employee.map((allOptions) => {
+    const employeeOption = noemployee.map((allOptions) => {
 
         return {
             value: allOptions,
@@ -69,33 +99,37 @@ const SprintsForms = (props) => {
             setNewEmployee(array);
         })
 
-       
+
     };
 
 
     return (
         <Container>
             <Col md="4" className="mx-auto">
-                <Form onSubmit={onSubmit} className = "sprintForm" >
-                <h4 className="sprintTitle">Sprint Form</h4>
+                <Form noValidate validated={validated} onSubmit={onSubmit} className="sprintForm" >
+                    <h4 className="sprintTitle">Sprint Form</h4>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Sprints Name</Form.Label>
                         <Form.Control type="sprints" placeholder="Sprints Name" className="form-control"
                             value={title}
-                            onChange={(e) => setTitle(e.target.value)} />
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlInput2">
                         <Form.Label>Sprints Details</Form.Label>
                         <Form.Control type="details" placeholder="Sprints Details"
                             className="form-control"
                             value={description}
-                            onChange={(e) => setDescription(e.target.value)} />
+                            onChange={(e) => setDescription(e.target.value)}
+                            required />
                     </Form.Group>
 
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Manager</Form.Label>
                         <Form.Control as="select" custom className="form-control"
+                            required
                             value={manager}
                             onChange={(e) => setManager(e.target.value)}>
                             {employee.map((option) => {
@@ -117,9 +151,11 @@ const SprintsForms = (props) => {
                     <Form.Group controlId="exampleForm.ControlSelect3">
                         <Form.Label>Status</Form.Label>
                         <Form.Control as="select" custom defaultValue="select" className="form-control"
+                            required
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
+                            <option></option>
                             <option>open</option>
                             <option>in progress</option>
                             <option>in review</option>
@@ -132,6 +168,7 @@ const SprintsForms = (props) => {
                         <Form.Label>Start Date</Form.Label>
                         <div>
                             <DatePicker dateFormat="MM-DD-YYYY"
+                                required
                                 onChange={date => setstartDate(date)}
                                 value={startDate}
                             />
@@ -142,6 +179,7 @@ const SprintsForms = (props) => {
                         <Form.Label>End Date</Form.Label>
                         <div>
                             <DatePicker dateFormat="MM-DD-YYYY"
+                                required
                                 onChange={date => setendDate(date)}
                                 value={endDate}
                             />

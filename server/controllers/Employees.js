@@ -3,11 +3,11 @@ import Roles from '../models/Roles.js'
 
 // Get Routes
 export const getEmployees = async (req, res) => {
-	try {
+    try {
         // Include the roles with employees.populate())
         const employee = await EmployeeSchema.find({}).populate('role', "-createdAt")// hide these fields in the get
         console.log(employee);
-        return  res.json(employee);
+        return res.json(employee);
     } catch (err) {
         console.log(err);
 
@@ -37,41 +37,42 @@ export const getEmployees = async (req, res) => {
 
 // Create an employee and assign an existing role to that employee
 export const postEmployees = async (req, res) => {
-    const { roleId, first_name, last_name} = req.body;
+    const { roleId, first_name, last_name } = req.body;
 
     try {
-        const role = await Roles.findById(roleId).orFail() 
+        const role = await Roles.findById(roleId).orFail()
         const employee = await EmployeeSchema.create({
-			first_name,
-			last_name,
-			role: role.id,
-			
-		});
-        const updatedEmpList =  await EmployeeSchema.find({}).populate('role', "-createdAt")
-        return  res.json({employee,updatedEmpList} );
+            first_name,
+            last_name,
+            role: role.id,
+
+        });
+        const updatedEmpList = await EmployeeSchema.find({}).populate('role', "-createdAt")
+        return res.json({ employee, updatedEmpList });
 
     } catch (err) {
         console.log(err, "Something went wrong");
 
-        return  res.json(err);
+        return res.json(err);
     }
 };
 
 
 // DELETE Roles
 export const deleteEmployee = async (req, res) => {
-	const id = req.params.id;
-	try {
-	    await EmployeeSchema.findByIdAndDelete(id);
-        const updatedEmpList =  await EmployeeSchema.find({}).populate('role', "-createdAt")
+    const id = req.params.id;
+    try {
+        await EmployeeSchema.findByIdAndDelete(id);
+        const updatedEmpList = await EmployeeSchema.find({}).populate('role', "-createdAt")
         console.log("This is an updated Emp List ", updatedEmpList);
-		return res.json({message: `Successfully deleted ${id}!`, 
-    updatedEmpList
-    
-    })
-		
-	} catch (err) {
-		console.log(err);
-		return res.status(500).json({ err: "Something went wrong" })
-	}
+        return res.json({
+            message: `Successfully deleted ${id}!`,
+            updatedEmpList
+
+        })
+
+    } catch (err) {
+        console.log(err);
+        return res.status(500).json({ err: "Something went wrong" })
+    }
 };
