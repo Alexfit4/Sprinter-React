@@ -18,7 +18,7 @@ const SprintsForms = (props) => {
     const [status, setStatus] = useState([]);
     const [newEmployee, setNewEmployee] = useState([])
     const [noemployee, setNoEmployee] = useState([]);
-
+    const [validated, setValidated] = useState(false);
 
     useEffect(() => {
         axios.get('https://sprinter-v2.herokuapp.com/employee')
@@ -59,7 +59,13 @@ const SprintsForms = (props) => {
 
     const onSubmit = (e) => {
         e.preventDefault();
+        const form = e.currentTarget;
+        if (form.checkValidity() === false) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
 
+        setValidated(true);
         let project = {
             title: title,
             description: description,
@@ -104,7 +110,7 @@ const SprintsForms = (props) => {
     return (
         <Container>
             <Col md="4" className="mx-auto">
-                <Form onSubmit={onSubmit} className="sprintForm" >
+                <Form noValidate validated={validated} onSubmit={onSubmit} className="sprintForm" >
                     <h4 className="sprintTitle">Sprint Form</h4>
                     <Form.Group controlId="exampleForm.ControlInput1">
                         <Form.Label>Sprints Name</Form.Label>
