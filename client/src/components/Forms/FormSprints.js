@@ -116,20 +116,24 @@ const SprintsForms = (props) => {
                         <Form.Label>Sprints Name</Form.Label>
                         <Form.Control type="sprints" placeholder="Sprints Name" className="form-control"
                             value={title}
-                            onChange={(e) => setTitle(e.target.value)} />
+                            onChange={(e) => setTitle(e.target.value)}
+                            required
+                        />
                     </Form.Group>
                     <Form.Group controlId="exampleForm.ControlInput2">
                         <Form.Label>Sprints Details</Form.Label>
                         <Form.Control type="details" placeholder="Sprints Details"
                             className="form-control"
                             value={description}
-                            onChange={(e) => setDescription(e.target.value)} />
+                            onChange={(e) => setDescription(e.target.value)}
+                            required />
                     </Form.Group>
 
 
                     <Form.Group controlId="exampleForm.ControlSelect1">
                         <Form.Label>Manager</Form.Label>
                         <Form.Control as="select" custom className="form-control"
+                            required
                             value={manager}
                             onChange={(e) => setManager(e.target.value)}>
                             {employee.map((option) => {
@@ -151,6 +155,7 @@ const SprintsForms = (props) => {
                     <Form.Group controlId="exampleForm.ControlSelect3">
                         <Form.Label>Status</Form.Label>
                         <Form.Control as="select" custom defaultValue="select" className="form-control"
+                            required
                             value={status}
                             onChange={(e) => setStatus(e.target.value)}
                         >
@@ -167,6 +172,7 @@ const SprintsForms = (props) => {
                         <Form.Label>Start Date</Form.Label>
                         <div>
                             <DatePicker dateFormat="MM-DD-YYYY"
+                                required
                                 onChange={date => setstartDate(date)}
                                 value={startDate}
                             />
@@ -177,6 +183,7 @@ const SprintsForms = (props) => {
                         <Form.Label>End Date</Form.Label>
                         <div>
                             <DatePicker dateFormat="MM-DD-YYYY"
+                                required
                                 onChange={date => setendDate(date)}
                                 value={endDate}
                             />
