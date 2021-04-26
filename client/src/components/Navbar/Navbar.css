@@ -78,8 +78,12 @@ ul {
 	padding-left: 0;
 }
 
-.title {
+.nav-title {
 	color: white;
 	font-style: italic;
-	font-size: large;
+	font-size: xx-large;
+}
+
+.nav-icon{
+	margin-left:auto;
 }
