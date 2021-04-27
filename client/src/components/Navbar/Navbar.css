@@ -82,6 +82,7 @@ ul {
 	color: white;
 	font-style: italic;
 	font-size: xx-large;
+	cursor: pointer;
 }
 
 .nav-icon{
