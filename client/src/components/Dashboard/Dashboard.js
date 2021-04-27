@@ -26,7 +26,7 @@ function Dashboard() {
 
     const calculateDeadline = () => {
         axios.get(`https://sprinter-v2.herokuapp.com/projects/${id}`).then((sprints) => {
-            console.log(sprints.data.startDate);
+            
             var date1 = new Date(sprints.data.startDate);
             var date2 = new Date(sprints.data.endDate);
 
@@ -39,16 +39,9 @@ function Dashboard() {
             );
 
             //To display the final no. of days (result)
-            console.log(
-                "Total number of days between dates  <br>" +
-                date1 +
-                "<br> and <br>" +
-                date2 +
-                " is: <br> " +
-                Difference_In_Days
-            );
+          
             setDeadline(Difference_In_Days);
-            console.log(deadline);
+            
         });
     };
 
@@ -56,7 +49,7 @@ function Dashboard() {
         axios
             .get("https://sprinter-v2.herokuapp.com/projects/")
             .then((sprints) => {
-                console.log(sprints.data[0]._id);
+                
                 setResults(sprints.data);
                 setOpened(sprints.data.filter((data) => data.status === "open").length);
                 setInProgress(

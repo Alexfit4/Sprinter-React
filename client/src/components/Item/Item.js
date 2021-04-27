@@ -49,7 +49,7 @@ const Item = ({ item, index, moveItem, status, props }) => {
 
 
     },
-        console.log("this is", item));
+       );
 
     const [show, setShow] = useState(false);
 
@@ -68,9 +68,7 @@ const Item = ({ item, index, moveItem, status, props }) => {
         var projectId = item.id
        
         const response = await deleteProject(projectId)
-        console.log(response)
-        // window.location.href = "/sprints"
-        // props.setProjectList(response.data.updatedSprintList)
+
     }
 
 
