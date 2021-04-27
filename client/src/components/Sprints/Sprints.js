@@ -19,8 +19,7 @@ const Sprints = (props) => {
                 .concat({ ...item, status, icon: mapping.icon });
             return [...newItems];
         });
-        console.log("this is", status);
-        console.log("this is item", item);
+     
         axios
             .put(`https://sprinter-v2.herokuapp.com/projects/${item.id}`, {
                 title: item.title,
@@ -28,7 +27,7 @@ const Sprints = (props) => {
                 status: status,
             })
             .then((data) => {
-                console.log(data);
+               
             })
             .catch((err) => {
                 console.log(err);
@@ -48,7 +47,7 @@ const Sprints = (props) => {
         axios
             .get("https://sprinter-v2.herokuapp.com/projects")
             .then((sprints) => {
-                console.log(sprints.data);
+              
 
                 const results = sprints.data.map((sprint) => {
                     let description;
@@ -73,15 +72,14 @@ const Sprints = (props) => {
                         content: description,
                     };
                 });
-                console.log(results);
+               
                 setItems(results);
             })
             .catch((error) => {
                 console.log(error);
             });
 
-        console.log(items);
-        console.log(statuses);
+      
     };
 
     useEffect(getSprints, []);

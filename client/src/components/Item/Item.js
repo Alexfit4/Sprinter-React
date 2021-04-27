@@ -49,7 +49,7 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
 
 
     },
-        console.log("this is", item));
+       );
 
     const [show, setShow] = useState(false);
 
@@ -68,17 +68,16 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
         var projectId = item.id
 
         const response = await deleteProject(projectId)
-        console.log(response)
-        console.log(items)
+
+
+
 
         const filteredItem = items.filter(item => {
             return item.id != projectId
         })
 
-        console.log(filteredItem)
+      
         setItems(filteredItem)
-        // window.location.href = "/sprints"
-        // props.setProjectList(response.data.updatedSprintList)
     }
 
 

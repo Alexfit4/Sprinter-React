@@ -74,7 +74,7 @@ export default function CustomPieChart() {
 
 	const [data] = useState(info)
 
-	console.log(data);
+	
 
 
 	return (

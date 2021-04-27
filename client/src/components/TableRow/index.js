@@ -11,9 +11,9 @@ function TableRow(props) {
 
   async function handleClick(e) {
     var empId = e.target.getAttribute("value")
-    console.log(empId)
+    
     const response = await deleteEmp(empId)
-    console.log(response)
+  
     props.setEmployees(response.data.updatedEmpList)
   }
 
