@@ -111,10 +111,6 @@ const SprintsForms = (props) => {
 
     };
 
-    const formatDate = (date) => {
-        const newDate = Moment(date).format("l")
-        console.log(newDate)
-    }
 
     return (
         <Container>

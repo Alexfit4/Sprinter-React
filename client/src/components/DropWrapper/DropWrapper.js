@@ -21,10 +21,6 @@ const DropWrapper = ({ onDrop, children, status }) => {
         })
     });
 
-    const clicked = () => {
-        console.log('clicked')
-    }
-
     
     return (
         

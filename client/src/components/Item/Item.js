@@ -1,6 +1,5 @@
-import React, { Fragment, useState, useRef, useEffect } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { useDrag, useDrop } from "react-dnd";
-// import Window from "../Window/Window";
 import ITEM_TYPE from "../../data/types";
 import { RiDeleteBinLine } from "react-icons/ri"
 import axios from "axios";
@@ -67,8 +66,8 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
     async function handleClick(e) {
 
         var projectId = item.id
-        console.log(projectId)
-        const response = deleteProject(projectId)
+       
+        const response = await deleteProject(projectId)
         console.log(response)
         console.log(items)
 

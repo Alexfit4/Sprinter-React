@@ -1,5 +1,5 @@
 import React from 'react'
-import { Col, Card, Image } from "react-bootstrap";
+import { Col,  Image } from "react-bootstrap";
 
 function DevInfo(props) {
     return(

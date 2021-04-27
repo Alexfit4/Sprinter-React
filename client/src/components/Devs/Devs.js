@@ -1,5 +1,5 @@
 import React from 'react'
-import {  Row, Col, Card, Image, Container } from "react-bootstrap";
+import {  Row,  Card, Container } from "react-bootstrap";
 import DevInfo from '../DevInfo/DevInfo'
 
 
