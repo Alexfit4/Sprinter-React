@@ -105,7 +105,7 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
 
                 </p>
                 <p className={"item-content"}>{item.content}</p>
-                <p className={"item-status"}>{item.icon}</p>
+                {/* <p className={"item-status"}>{item.icon}</p> */}
 
             </div>
         </Fragment >
