@@ -5,9 +5,9 @@ import { RiDeleteBinLine } from "react-icons/ri"
 import axios from "axios";
 
 
-const Item = ({ item, index, moveItem, status, props }) => {
+const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
     const ref = useRef(null);
-    const [items, setItems] = useState(item);
+    // const [items, setItems] = useState(item);
     const [, drop] = useDrop({
         accept: ITEM_TYPE,
         hover(item, monitor) {
@@ -66,9 +66,18 @@ const Item = ({ item, index, moveItem, status, props }) => {
     async function handleClick(e) {
 
         var projectId = item.id
-       
+
         const response = await deleteProject(projectId)
 
+
+
+
+        const filteredItem = items.filter(item => {
+            return item.id != projectId
+        })
+
+      
+        setItems(filteredItem)
     }
 
 
@@ -77,7 +86,7 @@ const Item = ({ item, index, moveItem, status, props }) => {
     const styleDelete = {
         position: "relative",
         top: "-10",
-        left: "140",
+        right: "-185",
     };
 
     return (
@@ -95,7 +104,7 @@ const Item = ({ item, index, moveItem, status, props }) => {
 
                 </p>
                 <p className={"item-content"}>{item.content}</p>
-                <p className={"item-status"}>{item.icon}</p>
+                {/* <p className={"item-status"}>{item.icon}</p> */}
 
             </div>
         </Fragment >

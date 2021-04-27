@@ -1,3 +1,5 @@
+import dotenv from "dotenv"
+dotenv.config()
 import express from "express";
 import mongoose from 'mongoose';
 import cors from "cors";
@@ -16,7 +18,7 @@ app.use('/projects', ProjectRouter)
 
 
 const PORT = process.env.PORT || 5000;
-const CONNECTION_URL = process.env.MONGODB_URI || "mongodb+srv://AmirA:1234@cluster0.lmphr.mongodb.net/Sprinter?retryWrites=true&w=majority";
+// const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(function(req, res) {
     res.sendFile(path.join(__dirname, "./client/build/index.html"));
@@ -25,7 +27,7 @@ app.use(function(req, res) {
 app.listen(PORT, () => {
 	console.log("Server up");
 	mongoose
-		.connect(CONNECTION_URL, {
+		.connect(process.env.CONNECTION_URL, {
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
 		})

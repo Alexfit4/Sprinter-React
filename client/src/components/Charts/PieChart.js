@@ -45,7 +45,7 @@ export default function CustomPieChart() {
 
 	useEffect(() => {
 		axios
-			.get("http://localhost:5000/projects/")
+			.get("https://sprinter-v2.herokuapp.com/projects/")
 			.then((sprints) => {
 				
 				setOpened(sprints.data.filter((data) => data.status === "open").length);
