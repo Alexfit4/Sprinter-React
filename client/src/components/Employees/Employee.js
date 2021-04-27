@@ -1,8 +1,7 @@
 import React, {useState} from 'react';
 import TableComponents from "../Table"
-import {FormEmployeeData} from '../Forms/FormEmployeeData.js'
 import Forms from '../Forms/Form'
-import {Col, Row, Container} from "react-bootstrap";
+import {Row, Container} from "react-bootstrap";
 
 function Employee() {   
     const [employees, setEmployees] = useState([]);
@@ -11,7 +10,7 @@ function Employee() {
         <Container>
         <Row>
         <div className='employee'>
-            {/* <h1>Manage Employees</h1> */}
+           
                     <Forms 
                     setEmployees={setEmployees}
                         

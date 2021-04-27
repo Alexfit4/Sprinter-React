@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 import { Table } from 'react-bootstrap';
 import TableRow from '../TableRow';
 import axios from "axios";
@@ -17,8 +17,7 @@ function TableComponents(props) {
   const getAllEmployees = () => {
     getEmployees()
       .then(res => {
-        props.setEmployees(res.data)
-        console.log(res.data)
+        props.setEmployees(res.data)        
       })
       .catch(err => console.log(err));
   };
