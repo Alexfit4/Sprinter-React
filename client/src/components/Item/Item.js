@@ -66,7 +66,7 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
     async function handleClick(e) {
 
         var projectId = item.id
-       
+
         const response = await deleteProject(projectId)
         console.log(response)
         console.log(items)
@@ -87,7 +87,7 @@ const Item = ({ item, index, moveItem, status, props, items, setItems }) => {
     const styleDelete = {
         position: "relative",
         top: "-10",
-        left: "140",
+        right: "-185",
     };
 
     return (
