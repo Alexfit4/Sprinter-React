@@ -14,6 +14,11 @@ function Navbar() {
     // Function to toggle from true to false for the sidebar. 
     const showSidebar = () => setSidebar(!sidebar)
 
+    const goHome = () => {
+        let url = window.location.replace("/")
+        return url;
+        }
+
 	return (
 		<div>
             <IconContext.Provider value={{ color: 'white'}}>
@@ -23,7 +28,7 @@ function Navbar() {
 				</Link>
                 <IconContext.Provider value={{ color: 'white', size: "50px"}}>
                 <GiIcons.GiSprint className="nav-icon" />
-                <span className="nav-title">Sprinter</span>
+                <span className="nav-title" onClick={goHome}>Sprinter</span>
                 </IconContext.Provider>
 			</div>
             </IconContext.Provider>

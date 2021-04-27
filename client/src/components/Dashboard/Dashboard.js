@@ -196,7 +196,7 @@ function Dashboard() {
                 <Col sm={12} md={6} className="charts__left">
                     <div className="charts__left__title">
                         <div>
-                            <h1>Pie Chart</h1>
+                            <h1>Project Status Distribution</h1>
                         </div>
                     </div>
                     <CustomPieChart />
