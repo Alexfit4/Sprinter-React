@@ -6,7 +6,7 @@ import axios from "axios";
 
 function TableRow(props) {
   function deleteEmp(empId) {
-    return axios.delete(`http://localhost:5000/employee/${empId}`)
+    return axios.delete(`https://sprinter-v2.herokuapp.com/employee/${empId}`)
   }
 
   async function handleClick(e) {
