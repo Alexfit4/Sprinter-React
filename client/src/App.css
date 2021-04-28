@@ -103,7 +103,6 @@ html {
   flex-direction: column;
   padding: 1rem;
   position: relative;
-  overflow: hidden;
 }
 .sprintTitle{
   color:#2e4a66;
