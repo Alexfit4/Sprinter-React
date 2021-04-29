@@ -28,7 +28,17 @@
 
   ## Links
 
+  Deployed app: https://vibrant-pasteur-087033.netlify.app/ 
+
+  Repo: https://github.com/Alexfit4/Sprinter-React 
+
   ## Screenshots
+
+  ![dashboard](./screenshots/dashboard.png)
+
+  ![sprints](./screenshots/sprints.png)
+
+  ![employees](./screenshots/employees.png)
 
   ## Developers
 
